@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: okanagan-pulse-demo
+    runtime: python
+    plan: starter  # Or 'free' if you prefer
+    buildCommand: "pip install -r requirements.txt && python src/aggregator.py"
+    startCommand: "python -m http.server $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0

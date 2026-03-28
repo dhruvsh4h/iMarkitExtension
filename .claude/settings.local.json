@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python src/aggregator.py)",
+      "Bash(python3 \"Z:/All Projects/InWorks/iMarktiExtension/src/aggregator.py\")",
+      "Bash(py \"Z:/All Projects/InWorks/iMarktiExtension/src/aggregator.py\")",
+      "Bash(python3.exe \"Z:/All Projects/InWorks/iMarktiExtension/src/aggregator.py\")",
+      "Bash(cmd.exe /c \"cd \"\"Z:\\\\All Projects\\\\InWorks\\\\iMarktiExtension\"\" && python src/aggregator.py\")",
+      "Bash(cmd.exe /c \"where node && where npx\")",
+      "Bash(cmd.exe /c \"node --version && npx --version\")",
+      "Bash(cmd.exe /c \"python --version 2>&1 & py --version 2>&1 & python3 --version 2>&1\")",
+      "Bash(powershell.exe -Command \"Get-Command python, py, node, npx -ErrorAction SilentlyContinue | Select-Object Name, Source\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

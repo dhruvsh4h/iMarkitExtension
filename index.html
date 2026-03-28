@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Okanagan Pulse — iMarkit Community Intelligence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red:         '#B91C1C',
+              'red-dim':   '#7F1D1D',
+              'red-light': '#EF4444',
+              black:       '#080808',
+              surface:     '#111111',
+              'surface-2': '#181818',
+              border:      'rgba(255,255,255,0.07)',
+              muted:       '#6b7280',
+              off:         '#F4F0EB',
+            }
+          },
+          fontFamily: { sans: ['Inter','system-ui','sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    * { box-sizing: border-box; }
+    body { background: #080808; color: #F4F0EB; -webkit-font-smoothing: antialiased; }
+
+    /* ── Scrollbar hide ── */
+    .no-scroll::-webkit-scrollbar { display: none; }
+    .no-scroll { -ms-overflow-style:none; scrollbar-width:none; }
+
+    /* ── Pulse dot ── */
+    .pulse-dot {
+      display:inline-block; width:7px; height:7px; border-radius:50%;
+      background:#EF4444; animation:pdot 2s infinite;
+    }
+    @keyframes pdot {
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%    { opacity:.45; transform:scale(1.35); }
+    }
+
+    /* ── Hero ── */
+    .hero-bg {
+      background: linear-gradient(130deg,#1e3a10 0%,#111 65%,#080808 100%);
+    }
+
+    /* ════════════════════════════════════════
+       FILTER BAR
+    ════════════════════════════════════════ */
+    .filter-bar {
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Category pills */
+    .cat-pill {
+      display: inline-flex; align-items: center;
+      padding: 5px 13px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: .72rem; font-weight: 600; letter-spacing:.02em;
+      color: #9ca3af; white-space: nowrap;
+      cursor: pointer; transition: all .15s ease;
+      background: transparent;
+      user-select: none;
+    }
+    .cat-pill:hover { border-color:#B91C1C; color:#F4F0EB; }
+    .cat-pill.active {
+      background:#B91C1C; border-color:#B91C1C; color:#fff;
+    }
+
+    /* Price segments — single segmented control */
+    .price-seg-wrap {
+      display: inline-flex;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .price-seg {
+      padding: 5px 12px;
+      font-size: .72rem; font-weight: 600; letter-spacing:.03em;
+      color: #6b7280;
+      cursor: pointer; transition: all .15s ease;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      background: transparent;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .price-seg:last-child { border-right: none; }
+    .price-seg:hover { color:#F4F0EB; background:rgba(255,255,255,0.04); }
+    .price-seg.active { background:#B91C1C; color:#fff; }
+
+    /* Date button */
+    .date-btn {
+      display: inline-flex; align-items: center; gap:6px;
+      padding: 5px 12px; border-radius:8px;
+      border:1px solid rgba(255,255,255,0.1);
+      font-size:.72rem; font-weight:600; letter-spacing:.02em;
+      color:#9ca3af; cursor:pointer;
+      transition: all .15s ease; background:transparent;
+      white-space:nowrap; flex-shrink:0;
+    }
+    .date-btn:hover { border-color:#B91C1C; color:#F4F0EB; }
+    .date-btn.open  { border-color:#B91C1C; color:#F4F0EB; }
+
+    /* ════════════════════════════════════════
+       CALENDAR DROPDOWN
+    ════════════════════════════════════════ */
+    #cal-dropdown {
+      display:none; position:absolute;
+      top:calc(100% + 10px); right:0; z-index:60;
+      background:#141414;
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:14px; padding:18px; width:272px;
+      box-shadow:0 24px 64px rgba(0,0,0,.8);
+    }
+    #cal-dropdown.open { display:block; }
+
+    .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+    .cal-day {
+      aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+      border-radius:6px; font-size:.72rem; font-weight:500;
+      cursor:pointer; color:#F4F0EB;
+      transition:background .12s, color .12s; position:relative;
+    }
+    .cal-day.disabled { color:#333; cursor:default; pointer-events:none; }
+    .cal-day.has-events:not(.disabled):hover { background:rgba(185,28,28,.22); color:#EF4444; }
+    .cal-day.range-start, .cal-day.range-end {
+      background:#B91C1C !important; color:#fff !important; font-weight:700;
+    }
+    .cal-day.in-range { background:rgba(185,28,28,.15); color:#EF4444; border-radius:0; }
+    .cal-day.range-start { border-radius:6px 0 0 6px; }
+    .cal-day.range-end   { border-radius:0 6px 6px 0; }
+    .cal-day.range-start.range-end { border-radius:6px; }
+    .cal-day.has-events::after {
+      content:''; position:absolute; bottom:2px; left:50%;
+      transform:translateX(-50%); width:3px; height:3px;
+      border-radius:50%; background:#B91C1C;
+    }
+    .cal-day.range-start::after, .cal-day.range-end::after { background:#fff; }
+
+    /* ════════════════════════════════════════
+       CARDS
+    ════════════════════════════════════════ */
+    .event-card {
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .event-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 1px rgba(185,28,28,.35), 0 12px 40px rgba(0,0,0,.5);
+    }
+
+    .cat-badge {
+      font-size:.6rem; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase; padding:2px 7px; border-radius:4px;
+    }
+
+    /* Ticket button */
+    .tkt-btn {
+      display:inline-flex; align-items:center; gap:4px;
+      font-size:.68rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+      padding:5px 11px; border-radius:6px; text-decoration:none;
+      transition:background .15s; white-space:nowrap; cursor:pointer;
+    }
+    .tkt-btn.paid { background:#B91C1C; color:#fff; }
+    .tkt-btn.paid:hover { background:#EF4444; }
+    .tkt-btn.free { background:#064E3B; color:#6EE7B7; }
+    .tkt-btn.free:hover { background:#065F46; }
+    .tkt-btn.ask  { background:transparent; border:1px solid rgba(185,28,28,.5); color:#EF4444; }
+    .tkt-btn.ask:hover { background:rgba(185,28,28,.12); }
+
+    /* Active filter pill in results bar */
+    .active-chip {
+      display:inline-flex; align-items:center; gap:5px;
+      font-size:.68rem; font-weight:600;
+      padding:3px 9px; border-radius:999px;
+      background:rgba(185,28,28,.15); border:1px solid rgba(185,28,28,.35);
+      color:#EF4444; white-space:nowrap;
+    }
+    .active-chip button { line-height:1; color:#EF4444; opacity:.7; font-size:.8rem; }
+    .active-chip button:hover { opacity:1; }
+
+    /* grid fade */
+    #event-grid { transition:opacity .22s ease; }
+    #event-grid.fading { opacity:0; }
+  </style>
+</head>
+<body class="min-h-screen font-sans">
+
+  <!-- ══ NAV ══════════════════════════════════════════════════════ -->
+  <nav class="sticky top-0 z-50 bg-[#080808] border-b border-white/[.06]">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 h-13 flex items-center justify-between" style="height:52px">
+      <!-- Logo -->
+      <div class="flex items-center gap-2.5">
+        <div class="w-6 h-6 rounded-md bg-brand-red flex items-center justify-center">
+          <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-white">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+          </svg>
+        </div>
+        <span class="font-bold text-[13px] text-white tracking-tight">iMarkit</span>
+        <span class="text-white/20 text-sm">/</span>
+        <span class="font-semibold text-[13px] text-white/60 hidden sm:block">Okanagan Pulse</span>
+      </div>
+
+      <!-- Centre badge -->
+      <div class="flex items-center gap-2 text-[11px] text-white/40 font-medium">
+        <span class="pulse-dot"></span>
+        <span>Mar 26 – 31, 2026 · Kelowna BC</span>
+      </div>
+
+      <!-- CTA -->
+      <a href="#" class="hidden sm:block text-[11px] font-bold bg-brand-red hover:bg-brand-red-light
+         transition-colors px-3 py-1.5 rounded-lg text-white tracking-wide">
+        Add Event
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ═════════════════════════════════════════════════════ -->
+  <section class="hero-bg border-b border-white/[.05]">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 sm:py-16">
+      <span class="inline-block bg-brand-red/90 text-white text-[10px] font-bold
+             px-2.5 py-1 rounded tracking-[.12em] uppercase mb-4">
+        Featured This Week
+      </span>
+      <h1 id="hero-title"
+          class="text-[2.2rem] sm:text-5xl font-extrabold text-white leading-[1.1] tracking-tight mb-5">
+        BC Interior Sportsman Show
+      </h1>
+
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-5 text-sm text-white/60">
+        <span id="hero-date" class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          Fri, Mar 27 · 10:00 AM
+        </span>
+        <span id="hero-venue" class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          MNP Place
+        </span>
+        <span id="hero-price" class="text-green-400 font-semibold">$15 / Kids Free</span>
+      </div>
+
+      <p id="hero-hook" class="text-white/55 text-[15px] max-w-xl leading-relaxed mb-7">
+        The region's premier outdoor expo — hunting, fishing, camping gear, and guided trip bookings all under one massive roof at MNP Place.
+      </p>
+
+      <div class="flex flex-wrap gap-2 items-center">
+        <span class="text-[10px] font-semibold uppercase tracking-widest text-white/30 bg-white/[.06] px-2.5 py-1 rounded">Outdoors</span>
+        <span class="text-[10px] font-semibold uppercase tracking-widest text-white/30 bg-white/[.06] px-2.5 py-1 rounded">Family</span>
+        <span class="text-[10px] font-semibold uppercase tracking-widest text-white/30 bg-white/[.06] px-2.5 py-1 rounded">Expo</span>
+        <a id="hero-ticket-btn" href="https://bcsportsmanshow.com" target="_blank" rel="noopener"
+           class="tkt-btn paid ml-1">
+          Get Tickets
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M7 17L17 7M7 7h10v10"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STICKY FILTER BAR ═════════════════════════════════════════ -->
+  <div class="filter-bar sticky top-[52px] z-40">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+      <!-- Single row: categories · divider · price segments · divider · date -->
+      <div class="flex items-center gap-2 py-2.5 overflow-x-auto no-scroll">
+
+        <!-- Category pills -->
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <button class="cat-pill active" data-filter="all">All</button>
+          <button class="cat-pill" data-filter="tonight">Tonight</button>
+          <button class="cat-pill" data-filter="free">Free</button>
+          <button class="cat-pill" data-filter="Family">Family</button>
+          <button class="cat-pill" data-filter="Punjabi-Community">Punjabi</button>
+          <button class="cat-pill" data-filter="Nightlife">Nightlife</button>
+          <button class="cat-pill" data-filter="Business">Business</button>
+        </div>
+
+        <!-- Divider -->
+        <div class="w-px h-5 bg-white/[.08] flex-shrink-0 mx-1"></div>
+
+        <!-- Price segmented control -->
+        <div class="price-seg-wrap flex-shrink-0">
+          <button class="price-seg" data-price="free">Free</button>
+          <button class="price-seg" data-price="budget">&lt; $20</button>
+          <button class="price-seg" data-price="mid">&lt; $50</button>
+          <button class="price-seg" data-price="premium">$50+</button>
+        </div>
+
+        <!-- Divider -->
+        <div class="w-px h-5 bg-white/[.08] flex-shrink-0 mx-1"></div>
+
+        <!-- Date range button + dropdown -->
+        <div class="relative flex-shrink-0" id="cal-wrap">
+          <button id="cal-btn" onclick="toggleCalendar()" class="date-btn">
+            <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span id="cal-btn-label">Dates</span>
+            <svg class="w-2.5 h-2.5 opacity-40" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+
+          <!-- Calendar dropdown -->
+          <div id="cal-dropdown">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[13px] font-bold text-white">March 2026</span>
+              <button id="cal-clear-btn" onclick="clearDateRange()"
+                class="hidden text-[11px] font-semibold text-brand-red hover:text-brand-red-light transition-colors">
+                Clear
+              </button>
+            </div>
+            <p id="cal-hint" class="text-[11px] text-white/35 mb-3">Select a start date, then end date</p>
+
+            <div id="cal-range-display" class="hidden mb-3 px-3 py-2 rounded-lg bg-brand-red/10 border border-brand-red/25">
+              <p class="text-[10px] font-bold text-brand-red uppercase tracking-widest mb-0.5">Range</p>
+              <p id="cal-range-text" class="text-[13px] text-white font-semibold"></p>
+            </div>
+
+            <!-- Day headers -->
+            <div class="cal-grid mb-1">
+              <div class="text-center text-[10px] text-white/30 font-semibold py-1">Su</div>
+              <div class="text-center text-[10px] text-white/30 font-semibold py-1">Mo</div>
+              <div class="text-center text-[10px] text-white/30 font-semibold py-1">Tu</div>
+              <div class="text-center text-[10px] text-white/30 font-semibold py-1">We</div>
+              <div class="text-center text-[10px] text-white/30 font-semibold py-1">Th</div>
+              <div class="text-center text-[10px] text-white/30 font-semibold py-1">Fr</div>
+              <div class="text-center text-[10px] text-white/30 font-semibold py-1">Sa</div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+
+            <button id="cal-apply-btn" onclick="applyDateRange()"
+              class="hidden mt-3 w-full text-[11px] font-bold tracking-widest uppercase
+                     bg-brand-red hover:bg-brand-red-light text-white py-2 rounded-lg transition-colors">
+              Apply Range
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CONTENT ═══════════════════════════════════════════════════ -->
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-7 pb-16">
+
+    <!-- Meta / result bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+      <div class="flex items-center gap-2 flex-wrap">
+        <p class="text-[13px] text-white/40">
+          <span id="result-count" class="text-white font-bold text-sm">10</span>
+          <span class="ml-1">events</span>
+        </p>
+        <div id="active-chips" class="flex items-center gap-1.5 flex-wrap"></div>
+      </div>
+
+      <!-- Week at a glance — minimal dot-separated -->
+      <div id="day-summary"
+           class="flex items-center gap-3 text-[11px] text-white/35 overflow-x-auto no-scroll font-medium">
+      </div>
+    </div>
+
+    <!-- Event grid -->
+    <div id="event-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5"></div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-24">
+      <p class="text-4xl mb-4 opacity-30">—</p>
+      <p class="text-white/30 text-sm mb-3">No events match your filters.</p>
+      <button onclick="resetAll()"
+        class="text-brand-red text-sm font-semibold hover:underline">Clear all filters</button>
+    </div>
+
+    <!-- Promote CTA -->
+    <div class="mt-14 rounded-2xl border border-white/[.07] bg-[#111]
+                px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="text-[10px] font-bold uppercase tracking-[.14em] text-brand-red mb-1">
+          Promote on iMarkit
+        </p>
+        <p class="text-[13px] text-white/50">
+          Reach Kelowna's most engaged community — list your event for free.
+        </p>
+      </div>
+      <a href="https://imarkit.com" target="_blank"
+         class="flex-shrink-0 bg-brand-red hover:bg-brand-red-light transition-colors
+                text-white text-[11px] font-bold tracking-wide px-5 py-2.5 rounded-lg">
+        List for Free →
+      </a>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+  <footer class="border-t border-white/[.05] py-7 text-center text-[11px] text-white/25">
+    <p>
+      <span class="text-white/50 font-semibold">Okanagan Pulse</span> ·
+      <a href="https://iMarkit.com" class="text-brand-red hover:opacity-80 transition-opacity">iMarkit.com</a>
+      · Kelowna, BC
+    </p>
+    <p class="mt-1">March 26–31, 2026 · Public event data</p>
+  </footer>
+
+  <!-- ══ SCRIPT ════════════════════════════════════════════════════ -->
+  <script>
+    /* ── State ── */
+    let ALL_EVENTS   = [];
+    let activeFilter = 'all';
+    let activeBucket = null;
+    let calStart     = null;
+    let calEnd       = null;
+    let EVENT_DATES  = new Set();
+
+    /* ── Category badge colours ── */
+    const CAT_CLR = {
+      'Family':            ['#78350F','#FCD34D'],
+      'Punjabi-Community': ['#7C2D12','#FDBA74'],
+      'Nightlife':         ['#3B0764','#C4B5FD'],
+      'Business':          ['#1E3A5F','#93C5FD'],
+      'Free':              ['#064E3B','#6EE7B7'],
+    };
+    function catBadge(cat) {
+      const [bg,fg] = CAT_CLR[cat] || ['#222','#999'];
+      return `<span class="cat-badge" style="background:${bg};color:${fg}">${cat}</span>`;
+    }
+
+    /* ── Price parse ── */
+    function priceCents(ev) {
+      if (ev.is_free) return 0;
+      const m = ev.price.match(/\d+/);
+      return m ? parseInt(m[0]) : 0;
+    }
+    function matchBucket(ev, b) {
+      if (!b) return true;
+      const p = priceCents(ev);
+      if (b === 'free')    return ev.is_free || p === 0;
+      if (b === 'budget')  return !ev.is_free && p > 0  && p < 20;
+      if (b === 'mid')     return !ev.is_free && p >= 20 && p < 50;
+      if (b === 'premium') return !ev.is_free && p >= 50;
+      return true;
+    }
+
+    /* ── Ticket button ── */
+    function ticketBtn(ev) {
+      const arrow = `<svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>`;
+      const url   = ev.source_url;
+      if (ev.is_free) {
+        return (url && url !== '#')
+          ? `<a href="${url}" target="_blank" rel="noopener" class="tkt-btn free">RSVP Free ${arrow}</a>`
+          : `<span class="tkt-btn free" style="cursor:default">Free Entry</span>`;
+      }
+      if (url && url !== '#')
+        return `<a href="${url}" target="_blank" rel="noopener" class="tkt-btn paid">Get Tickets ${arrow}</a>`;
+      const sub = encodeURIComponent('Inquiry: ' + ev.title);
+      return `<a href="mailto:info@imarkit.com?subject=${sub}" class="tkt-btn ask">Inquire</a>`;
+    }
+
+    /* ── Build card ── */
+    function buildCard(ev) {
+      const badges = ev.categories.map(catBadge).join('');
+      return `
+        <article class="event-card">
+          <div class="h-[3px]" style="background:${ev.image_color}"></div>
+          <div class="p-4 flex flex-col flex-1">
+
+            <p class="text-[11px] text-white/30 font-medium mb-2.5 flex items-center gap-1.5">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              ${ev.date_label} · ${ev.time}
+            </p>
+
+            <h3 class="text-[15px] font-bold text-white leading-snug mb-1">${ev.title}</h3>
+
+            <p class="text-[11px] text-white/35 flex items-center gap-1.5 mb-3">
+              <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              ${ev.venue}
+            </p>
+
+            <p class="text-[13px] text-white/50 leading-relaxed mb-4 flex-1">${ev.hook}</p>
+
+            <!-- Footer -->
+            <div class="pt-3 border-t border-white/[.06] flex items-center justify-between gap-2">
+              <div class="flex flex-wrap gap-1.5 items-center">
+                ${badges}
+                <span class="text-[11px] font-semibold ${ev.is_free ? 'text-emerald-400' : 'text-white/40'} ml-1">
+                  ${ev.price}
+                </span>
+              </div>
+              ${ticketBtn(ev)}
+            </div>
+          </div>
+        </article>`;
+    }
+
+    /* ── Active chips ── */
+    const BUCKET_LABEL = { free:'Free', budget:'< $20', mid:'< $50', premium:'$50+' };
+    const CAT_LABEL    = {
+      all:'All', tonight:'Tonight', free:'Free', Family:'Family',
+      'Punjabi-Community':'Punjabi', Nightlife:'Nightlife', Business:'Business'
+    };
+
+    function refreshChips() {
+      const wrap = document.getElementById('active-chips');
+      const chips = [];
+      if (activeFilter !== 'all')
+        chips.push(`<span class="active-chip">${CAT_LABEL[activeFilter]||activeFilter}
+          <button onclick="setFilter('all')">×</button></span>`);
+      if (activeBucket)
+        chips.push(`<span class="active-chip">${BUCKET_LABEL[activeBucket]}
+          <button onclick="clearBucket()">×</button></span>`);
+      if (calStart && calEnd && calStart !== calEnd)
+        chips.push(`<span class="active-chip">${fmtDate(calStart)} – ${fmtDate(calEnd)}
+          <button onclick="clearDateRange()">×</button></span>`);
+      else if (calStart)
+        chips.push(`<span class="active-chip">${fmtDate(calStart)}
+          <button onclick="clearDateRange()">×</button></span>`);
+      wrap.innerHTML = chips.join('');
+    }
+
+    /* ── Render ── */
+    function renderGrid() {
+      const today = '2026-03-26';
+      let list = ALL_EVENTS;
+      if (activeFilter === 'tonight')    list = list.filter(e => e.date === today);
+      else if (activeFilter === 'free')  list = list.filter(e => e.is_free);
+      else if (activeFilter !== 'all')   list = list.filter(e => e.categories.includes(activeFilter));
+      if (activeBucket) list = list.filter(e => matchBucket(e, activeBucket));
+      if (calStart && calEnd)  list = list.filter(e => e.date >= calStart && e.date <= calEnd);
+      else if (calStart)       list = list.filter(e => e.date === calStart);
+
+      const grid  = document.getElementById('event-grid');
+      const empty = document.getElementById('empty-state');
+      grid.classList.add('fading');
+      setTimeout(() => {
+        document.getElementById('result-count').textContent = list.length;
+        if (list.length === 0) { grid.innerHTML=''; empty.classList.remove('hidden'); }
+        else { empty.classList.add('hidden'); grid.innerHTML = list.map(buildCard).join(''); }
+        grid.classList.remove('fading');
+      }, 190);
+      refreshChips();
+    }
+
+    /* ── Filter setters ── */
+    function setFilter(f) {
+      activeFilter = f;
+      document.querySelectorAll('.cat-pill').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+      renderGrid();
+    }
+    function setBucket(b) {
+      activeBucket = (activeBucket === b) ? null : b;
+      document.querySelectorAll('.price-seg').forEach(s => s.classList.toggle('active', s.dataset.price === activeBucket));
+      renderGrid();
+    }
+    function clearBucket() {
+      activeBucket = null;
+      document.querySelectorAll('.price-seg').forEach(s => s.classList.remove('active'));
+      renderGrid();
+    }
+    function resetAll() { clearBucket(); clearDateRange(); setFilter('all'); }
+
+    /* ── Calendar ── */
+    function buildCalendar() {
+      const cells = [];
+      // March 2026: day 1 = Sunday
+      for (let d = 1; d <= 31; d++) {
+        const iso = `2026-03-${String(d).padStart(2,'0')}`;
+        const has = EVENT_DATES.has(iso);
+        cells.push(`<div class="cal-day${has?' has-events':' disabled'}"
+          data-date="${iso}" onclick="calClick('${iso}')">${d}</div>`);
+      }
+      document.getElementById('cal-grid').innerHTML = cells.join('');
+    }
+
+    function calClick(iso) {
+      if (!EVENT_DATES.has(iso)) return;
+      if (!calStart || (calStart && calEnd)) { calStart=iso; calEnd=null; }
+      else {
+        if (iso < calStart) { calEnd=calStart; calStart=iso; }
+        else calEnd=iso;
+      }
+      paintCal();
+    }
+
+    function paintCal() {
+      document.querySelectorAll('.cal-day').forEach(c => {
+        const d=c.dataset.date;
+        c.classList.remove('range-start','range-end','in-range');
+        if (d===calStart) c.classList.add('range-start');
+        if (d===calEnd)   c.classList.add('range-end');
+        if (calStart&&calEnd&&d>calStart&&d<calEnd) c.classList.add('in-range');
+      });
+      const hint=document.getElementById('cal-hint');
+      const disp=document.getElementById('cal-range-display');
+      const rtxt=document.getElementById('cal-range-text');
+      const clr =document.getElementById('cal-clear-btn');
+      const aply=document.getElementById('cal-apply-btn');
+      const lbl =document.getElementById('cal-btn-label');
+      if (calStart&&!calEnd) {
+        hint.textContent='Now click an end date';
+        disp.classList.remove('hidden');
+        rtxt.textContent=fmtDate(calStart)+' → …';
+        clr.classList.remove('hidden'); aply.classList.add('hidden');
+        lbl.textContent=fmtDate(calStart)+'…';
+      } else if (calStart&&calEnd) {
+        const same=calStart===calEnd;
+        hint.textContent=same?'1 day selected':'Range selected';
+        disp.classList.remove('hidden');
+        rtxt.textContent=same?fmtDate(calStart):`${fmtDate(calStart)} – ${fmtDate(calEnd)}`;
+        clr.classList.remove('hidden'); aply.classList.remove('hidden');
+        lbl.textContent=same?fmtDate(calStart):`${fmtDate(calStart)} – ${fmtDate(calEnd)}`;
+        document.getElementById('cal-btn').classList.add('open');
+      } else {
+        hint.textContent='Select a start date, then end date';
+        disp.classList.add('hidden');
+        clr.classList.add('hidden'); aply.classList.add('hidden');
+        lbl.textContent='Dates';
+        document.getElementById('cal-btn').classList.remove('open');
+      }
+    }
+
+    function toggleCalendar() {
+      const dd=document.getElementById('cal-dropdown');
+      const btn=document.getElementById('cal-btn');
+      dd.classList.toggle('open');
+      btn.classList.toggle('open',dd.classList.contains('open'));
+    }
+    function applyDateRange() {
+      document.getElementById('cal-dropdown').classList.remove('open');
+      document.getElementById('cal-btn').classList.remove('open');
+      renderGrid();
+    }
+    function clearDateRange() {
+      calStart=calEnd=null; paintCal(); renderGrid();
+    }
+    document.addEventListener('click', e=>{
+      const w=document.getElementById('cal-wrap');
+      if (!w.contains(e.target)) {
+        document.getElementById('cal-dropdown').classList.remove('open');
+        if (!calStart) document.getElementById('cal-btn').classList.remove('open');
+      }
+    });
+
+    function fmtDate(iso) {
+      const d=new Date(iso+'T12:00:00');
+      return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]+' Mar '+d.getDate();
+    }
+
+    /* ── Day summary ── */
+    function buildSummary(evs) {
+      const m={};
+      evs.forEach(e=>{ m[e.date_label]=(m[e.date_label]||0)+1; });
+      document.getElementById('day-summary').innerHTML =
+        Object.entries(m).map(([d,n],i,arr)=>`
+          <span>${d} <strong class="text-white/60">${n}</strong></span>
+          ${i<arr.length-1?'<span class="opacity-30">·</span>':''}
+        `).join('');
+    }
+
+    /* ── Hero ── */
+    function populateHero(f) {
+      if (!f) return;
+      document.getElementById('hero-title').textContent=f.title;
+      document.getElementById('hero-date').innerHTML=`
+        <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>${f.date_label} · ${f.time}`;
+      document.getElementById('hero-venue').innerHTML=`
+        <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>${f.venue}`;
+      document.getElementById('hero-price').textContent=f.price;
+      document.getElementById('hero-hook').textContent=f.hook;
+      const btn=document.getElementById('hero-ticket-btn');
+      btn.href=(f.source_url&&f.source_url!=='#')?f.source_url:'#';
+    }
+
+    /* ── Wire up ── */
+    document.querySelectorAll('.cat-pill').forEach(b =>
+      b.addEventListener('click',()=>setFilter(b.dataset.filter)));
+    document.querySelectorAll('.price-seg').forEach(s =>
+      s.addEventListener('click',()=>setBucket(s.dataset.price)));
+
+    /* ── Boot ── */
+    fetch('data/events.json')
+      .then(r=>r.json())
+      .then(data=>{
+        ALL_EVENTS  = data.events;
+        EVENT_DATES = new Set(ALL_EVENTS.map(e=>e.date));
+        buildCalendar();
+        buildSummary(ALL_EVENTS);
+        renderGrid();
+        populateHero(ALL_EVENTS.find(e=>e.is_featured));
+      })
+      .catch(()=>{
+        document.getElementById('event-grid').innerHTML=
+          `<p class="col-span-4 text-center text-white/20 py-20">Could not load events.json</p>`;
+      });
+  </script>
+</body>
+</html>
