@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-03-28T21:55:22",
-  "region": "Kelowna, BC — Okanagan",
-  "date_range": "Thu, Mar 26 – Tue, Jun 30",
+  "generated_at": "2026-03-29T16:13:50",
+  "region": "Kelowna, BC -- Okanagan",
+  "date_range": "Thu, Mar 26 - Tue, Jun 30",
   "date_min": "2026-03-26",
   "date_max": "2026-06-30",
   "total_events": 44,
@@ -37,7 +37,7 @@
       ],
       "is_free": false,
       "price": "No Cover",
-      "hook": "Kick off the weekend with craft beer and live acoustic vibes — Nate Haller brings warm folk energy to Red Bird's taproom.",
+      "hook": "Kick off the weekend with craft beer and live acoustic vibes -- Nate Haller brings warm folk energy to Red Bird's taproom.",
       "image_color": "#8B4513",
       "tags": [
         "Live Music",
@@ -61,7 +61,7 @@
       "is_featured": true,
       "is_free": false,
       "price": "$15 / Kids Free",
-      "hook": "The region's premier outdoor expo — hunting, fishing, camping gear, and guided trip bookings all under one massive roof at MNP Place.",
+      "hook": "The region's premier outdoor expo -- hunting, fishing, camping gear, and guided trip bookings all under one massive roof at MNP Place.",
       "image_color": "#2D5016",
       "tags": [
         "Outdoors",
@@ -82,14 +82,14 @@
       ],
       "is_free": false,
       "price": "$20 (Charity)",
-      "hook": "Laugh the night away for a good reason — local comedians take the Dakoda's stage to raise funds for a worthy Kelowna cause.",
+      "hook": "Laugh the night away for a good reason -- local comedians take the Dakoda's stage to raise funds for a worthy Kelowna cause.",
       "image_color": "#4A1942",
       "tags": [
         "Comedy",
         "Charity",
         "Nightlife"
       ],
-      "source_url": "https://dakodaskelowna.com",
+      "source_url": "https://www.dakodasnightclub.com",
       "id": 4,
       "date_label": "Fri, Mar 27",
       "is_featured": false
@@ -104,14 +104,14 @@
       ],
       "is_free": false,
       "price": "$30",
-      "hook": "Celebrate the Okanagan's best in film and media — an elegant awards gala honouring local storytellers on the big screen.",
+      "hook": "Celebrate the Okanagan's best in film and media -- an elegant awards gala honouring local storytellers on the big screen.",
       "image_color": "#1A1A2E",
       "tags": [
         "Film",
         "Awards",
         "Arts"
       ],
-      "source_url": "https://landmarkcinemas.com",
+      "source_url": "https://www.landmarkcinemas.com/kelowna",
       "id": 5,
       "date_label": "Sat, Mar 28",
       "is_featured": false
@@ -134,13 +134,13 @@
         "Family",
         "Free"
       ],
-      "source_url": "https://kelownafarmersmarket.com",
+      "source_url": "https://bcfarmersmarket.org/kelowna-farmers-and-crafters-market/",
       "id": 6,
       "date_label": "Sat, Mar 28",
       "is_featured": false
     },
     {
-      "title": "Punjabi Cultural Night — Vaisakhi Pre-Celebration",
+      "title": "Punjabi Cultural Night",
       "venue": "Kelowna Community Theatre",
       "date": "2026-03-29",
       "time": "6:30 PM",
@@ -158,7 +158,7 @@
         "Family",
         "Dance"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelownacommunitytheatre.com",
       "id": 7,
       "date_label": "Sun, Mar 29",
       "is_featured": false
@@ -173,14 +173,14 @@
       ],
       "is_free": false,
       "price": "$15",
-      "hook": "Grow your local network over craft cocktails and lakefront views — Kelowna's go-to Monday mixer for entrepreneurs and professionals.",
+      "hook": "Grow your local network over craft cocktails and lakefront views -- Kelowna's go-to Monday mixer for entrepreneurs and professionals.",
       "image_color": "#1E3A5F",
       "tags": [
         "Networking",
         "Business",
         "Professional"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelownachamber.org",
       "id": 8,
       "date_label": "Mon, Mar 30",
       "is_featured": false
@@ -196,14 +196,14 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Lace up and hit the ice — free public skating for the whole family at the Rutland Arena, skate rentals available on site.",
+      "hook": "Lace up and hit the ice -- free public skating for the whole family at the Rutland Arena, skate rentals available on site.",
       "image_color": "#0E7490",
       "tags": [
         "Free",
         "Family",
         "Sports"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelowna.ca/parks-recreation/recreation-facilities/arenas",
       "id": 9,
       "date_label": "Mon, Mar 30",
       "is_featured": false
@@ -219,14 +219,14 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Close out March with raw, unfiltered talent — BNA's open mic night is where Kelowna's next big acts take their first stage.",
+      "hook": "Close out March with raw, unfiltered talent -- BNA's open mic night is where Kelowna's next big acts take their first stage.",
       "image_color": "#7C3AED",
       "tags": [
         "Open Mic",
         "Free",
         "Live Music"
       ],
-      "source_url": "https://bnabrewing.com",
+      "source_url": "https://www.bnabrewing.com",
       "id": 10,
       "date_label": "Tue, Mar 31",
       "is_featured": false
@@ -242,20 +242,20 @@
       ],
       "is_free": false,
       "price": "$65",
-      "hook": "Sip through 30+ Okanagan wineries paired with gourmet bites from the valley's top chefs — the ultimate tasting night.",
+      "hook": "Sip through 30+ Okanagan wineries paired with gourmet bites from the valley's top chefs -- the ultimate tasting night.",
       "image_color": "#6B1A38",
       "tags": [
         "Wine",
         "Food",
         "Tasting"
       ],
-      "source_url": "https://laurelpackinghouse.com",
+      "source_url": "https://www.laurelpackinghouse.com",
       "id": 11,
       "date_label": "Thu, Apr 2",
       "is_featured": false
     },
     {
-      "title": "Kelowna Farmers' Market — Spring Opening",
+      "title": "Kelowna Farmers' Market -- Spring Opening",
       "venue": "Parkinson Recreation Centre",
       "date": "2026-04-04",
       "time": "8:00 AM",
@@ -272,7 +272,7 @@
         "Family",
         "Free"
       ],
-      "source_url": "https://kelownafarmersmarket.com",
+      "source_url": "https://bcfarmersmarket.org/kelowna-farmers-and-crafters-market/",
       "id": 12,
       "date_label": "Sat, Apr 4",
       "is_featured": false
@@ -288,14 +288,14 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Bring the kids and hunt for thousands of hidden eggs across City Park — face painting, bouncy castles, and the Easter Bunny included.",
+      "hook": "Bring the kids and hunt for thousands of hidden eggs across City Park -- face painting, bouncy castles, and the Easter Bunny included.",
       "image_color": "#16A34A",
       "tags": [
         "Family",
         "Free",
         "Holiday"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelowna.ca/parks-recreation",
       "id": 13,
       "date_label": "Sun, Apr 5",
       "is_featured": false
@@ -310,14 +310,14 @@
       ],
       "is_free": false,
       "price": "$10",
-      "hook": "Watch 8 Okanagan startups pitch live to investors and the community — networking reception with craft beer to follow.",
+      "hook": "Watch 8 Okanagan startups pitch live to investors and the community -- networking reception with craft beer to follow.",
       "image_color": "#1E40AF",
       "tags": [
         "Tech",
         "Startups",
         "Networking"
       ],
-      "source_url": "https://okanagancolab.com",
+      "source_url": "https://www.okanagancolab.com",
       "id": 14,
       "date_label": "Tue, Apr 7",
       "is_featured": false
@@ -334,7 +334,7 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Get moving to bhangra beats in this high-energy dance fitness class — no experience needed, all fitness levels welcome.",
+      "hook": "Get moving to bhangra beats in this high-energy dance fitness class -- no experience needed, all fitness levels welcome.",
       "image_color": "#EA580C",
       "tags": [
         "Fitness",
@@ -342,7 +342,7 @@
         "Dance",
         "Free"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelowna.ca/parks-recreation",
       "id": 15,
       "date_label": "Wed, Apr 8",
       "is_featured": false
@@ -357,14 +357,14 @@
       ],
       "is_free": false,
       "price": "No Cover",
-      "hook": "Smooth jazz trios take over the Train Station stage — settle into a booth with a cocktail and let the evening unwind itself.",
+      "hook": "Smooth jazz trios take over the Train Station stage -- settle into a booth with a cocktail and let the evening unwind itself.",
       "image_color": "#312E81",
       "tags": [
         "Jazz",
         "Live Music",
         "Nightlife"
       ],
-      "source_url": "#",
+      "source_url": "https://www.trainstationpub.ca",
       "id": 16,
       "date_label": "Fri, Apr 10",
       "is_featured": false
@@ -380,21 +380,21 @@
       ],
       "is_free": true,
       "price": "Free Entry",
-      "hook": "Over 60 local artisans showcase handmade pottery, jewelry, candles, and textiles — support small and shop local this spring.",
+      "hook": "Over 60 local artisans showcase handmade pottery, jewelry, candles, and textiles -- support small and shop local this spring.",
       "image_color": "#92400E",
       "tags": [
         "Craft Fair",
         "Artisan",
         "Shopping"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 17,
       "date_label": "Sat, Apr 11",
       "is_featured": false
     },
     {
       "title": "Vaisakhi Nagar Kirtan Parade",
-      "venue": "Rutland — Hwy 33",
+      "venue": "Rutland -- Hwy 33",
       "date": "2026-04-13",
       "time": "10:00 AM",
       "categories": [
@@ -413,7 +413,7 @@
         "Parade",
         "Cultural"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 18,
       "date_label": "Mon, Apr 13"
     },
@@ -428,14 +428,14 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Join hundreds of volunteers for a trail and shoreline cleanup at Knox Mountain — gloves, bags, and coffee provided.",
+      "hook": "Join hundreds of volunteers for a trail and shoreline cleanup at Knox Mountain -- gloves, bags, and coffee provided.",
       "image_color": "#15803D",
       "tags": [
         "Volunteer",
         "Environment",
         "Free"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelowna.ca/parks-recreation/parks-beaches/knox-mountain-park",
       "id": 19,
       "date_label": "Wed, Apr 22",
       "is_featured": false
@@ -458,7 +458,7 @@
         "Art",
         "Festival"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 20,
       "date_label": "Fri, Apr 24",
       "is_featured": false
@@ -473,14 +473,14 @@
       ],
       "is_free": false,
       "price": "$22",
-      "hook": "Dakoda's monthly stand-up showcase brings touring Canadian comedians to Kelowna — arrive early for dinner and the best seats.",
+      "hook": "Dakoda's monthly stand-up showcase brings touring Canadian comedians to Kelowna -- arrive early for dinner and the best seats.",
       "image_color": "#4A1942",
       "tags": [
         "Comedy",
         "Nightlife",
         "Stand-Up"
       ],
-      "source_url": "https://dakodaskelowna.com",
+      "source_url": "https://www.dakodasnightclub.com",
       "id": 21,
       "date_label": "Sat, Apr 25",
       "is_featured": false
@@ -496,7 +496,7 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Tour the marina, meet sailing instructors, and take free demo rides on the lake — a perfect spring Sunday for the whole family.",
+      "hook": "Tour the marina, meet sailing instructors, and take free demo rides on the lake -- a perfect spring Sunday for the whole family.",
       "image_color": "#0369A1",
       "tags": [
         "Sailing",
@@ -504,7 +504,7 @@
         "Family",
         "Waterfront"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelownayachtclub.com",
       "id": 22,
       "date_label": "Sun, Apr 26",
       "is_featured": false
@@ -528,7 +528,7 @@
         "Free",
         "Spring"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 23,
       "date_label": "Fri, May 1",
       "is_featured": false
@@ -543,14 +543,14 @@
       ],
       "is_free": false,
       "price": "$10",
-      "hook": "Tacos, tequila, and a DJ spinning Latin beats — Dakoda's goes full fiesta mode for Cinco de Mayo with drink specials all night.",
+      "hook": "Tacos, tequila, and a DJ spinning Latin beats -- Dakoda's goes full fiesta mode for Cinco de Mayo with drink specials all night.",
       "image_color": "#B91C1C",
       "tags": [
         "Nightlife",
         "Party",
         "Latin"
       ],
-      "source_url": "https://dakodaskelowna.com",
+      "source_url": "https://www.dakodasnightclub.com",
       "id": 24,
       "date_label": "Tue, May 5",
       "is_featured": false
@@ -566,14 +566,14 @@
       ],
       "is_free": false,
       "price": "$25",
-      "hook": "Honour the mothers in your life with a traditional Punjabi brunch — live tabla music, henna artists, and heartfelt community tributes.",
+      "hook": "Honour the mothers in your life with a traditional Punjabi brunch -- live tabla music, henna artists, and heartfelt community tributes.",
       "image_color": "#BE185D",
       "tags": [
         "Punjabi",
         "Family",
         "Mother's Day"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelownacommunitytheatre.com",
       "id": 25,
       "date_label": "Sun, May 10",
       "is_featured": false
@@ -590,7 +590,7 @@
       "is_featured": true,
       "is_free": true,
       "price": "Free Entry (food for purchase)",
-      "hook": "Taste the world without leaving Kelowna — 40+ food vendors from Indian to Ethiopian to Filipino line the waterfront for a two-day culinary tour.",
+      "hook": "Taste the world without leaving Kelowna -- 40+ food vendors from Indian to Ethiopian to Filipino line the waterfront for a two-day culinary tour.",
       "image_color": "#C2410C",
       "tags": [
         "Food",
@@ -598,7 +598,7 @@
         "Festival",
         "Family"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 26,
       "date_label": "Sat, May 16"
     },
@@ -621,7 +621,7 @@
         "Free",
         "Local"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 27,
       "date_label": "Sun, May 17",
       "is_featured": false
@@ -645,7 +645,7 @@
         "Free",
         "Summer"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelowna.ca/parks-recreation/parks-beaches",
       "id": 28,
       "date_label": "Mon, May 18",
       "is_featured": false
@@ -660,7 +660,7 @@
       ],
       "is_free": false,
       "price": "$95",
-      "hook": "The premier business gala of the year — black tie, three-course dinner, and awards recognizing Kelowna's most impactful companies and leaders.",
+      "hook": "The premier business gala of the year -- black tie, three-course dinner, and awards recognizing Kelowna's most impactful companies and leaders.",
       "image_color": "#1E3A5F",
       "tags": [
         "Business",
@@ -668,7 +668,7 @@
         "Gala",
         "Networking"
       ],
-      "source_url": "https://kelownachamber.org",
+      "source_url": "https://www.kelownachamber.org",
       "id": 29,
       "date_label": "Thu, May 21",
       "is_featured": false
@@ -683,20 +683,20 @@
       ],
       "is_free": false,
       "price": "$12",
-      "hook": "Island vibes hit the Okanagan — live reggae band, tropical cocktails, and a packed dancefloor to carry you into the long weekend.",
+      "hook": "Island vibes hit the Okanagan -- live reggae band, tropical cocktails, and a packed dancefloor to carry you into the long weekend.",
       "image_color": "#166534",
       "tags": [
         "Reggae",
         "Live Music",
         "Nightlife"
       ],
-      "source_url": "#",
+      "source_url": "https://www.fernandospub.ca",
       "id": 30,
       "date_label": "Fri, May 22",
       "is_featured": false
     },
     {
-      "title": "Spring Wine Trail — Kelowna Wineries",
+      "title": "Spring Wine Trail -- Kelowna Wineries",
       "venue": "Mission Hill, Quails' Gate, Summerhill",
       "date": "2026-05-23",
       "time": "11:00 AM",
@@ -705,14 +705,14 @@
       ],
       "is_free": false,
       "price": "$45 (pass)",
-      "hook": "A self-guided tour of 12 wineries along Kelowna's Lakeshore and Westside wine trails — your pass includes tastings at each stop.",
+      "hook": "A self-guided tour of 12 wineries along Kelowna's Lakeshore and Westside wine trails -- your pass includes tastings at each stop.",
       "image_color": "#7C2D12",
       "tags": [
         "Wine",
         "Tour",
         "Okanagan"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/wine-702/",
       "id": 31,
       "date_label": "Sat, May 23",
       "is_featured": false
@@ -728,7 +728,7 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Rods and tackle provided — bring the kids for a free morning of stocked-lake fishing, casting lessons, and outdoor fun.",
+      "hook": "Rods and tackle provided -- bring the kids for a free morning of stocked-lake fishing, casting lessons, and outdoor fun.",
       "image_color": "#0E7490",
       "tags": [
         "Fishing",
@@ -736,7 +736,7 @@
         "Free",
         "Outdoors"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelowna.ca/parks-recreation",
       "id": 32,
       "date_label": "Sun, May 24",
       "is_featured": false
@@ -752,7 +752,7 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Rainbow flags, drag performances, and craft beer — BNA hosts the official kickoff party for Kelowna Pride Week 2026.",
+      "hook": "Rainbow flags, drag performances, and craft beer -- BNA hosts the official kickoff party for Kelowna Pride Week 2026.",
       "image_color": "#7C3AED",
       "tags": [
         "Pride",
@@ -760,7 +760,7 @@
         "Party",
         "Free"
       ],
-      "source_url": "https://bnabrewing.com",
+      "source_url": "https://www.bnabrewing.com",
       "id": 33,
       "date_label": "Fri, May 29",
       "is_featured": false
@@ -775,14 +775,14 @@
       ],
       "is_free": false,
       "price": "$55",
-      "hook": "Ride 60km of Okanagan back-country gravel through vineyards and forests — post-ride BBQ and craft beer at the finish line.",
+      "hook": "Ride 60km of Okanagan back-country gravel through vineyards and forests -- post-ride BBQ and craft beer at the finish line.",
       "image_color": "#78350F",
       "tags": [
         "Cycling",
         "Outdoors",
         "Sports"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 34,
       "date_label": "Sat, May 30",
       "is_featured": false
@@ -797,7 +797,7 @@
       ],
       "is_free": true,
       "price": "Free Entry (food for purchase)",
-      "hook": "North America's top rib teams battle it out over open flames — live country music, kids' zone, and all-you-can-eat ribs by the lake.",
+      "hook": "North America's top rib teams battle it out over open flames -- live country music, kids' zone, and all-you-can-eat ribs by the lake.",
       "image_color": "#991B1B",
       "tags": [
         "Food",
@@ -805,7 +805,7 @@
         "Festival",
         "Family"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 35,
       "date_label": "Fri, Jun 5",
       "is_featured": false
@@ -821,7 +821,7 @@
       ],
       "is_free": false,
       "price": "$60",
-      "hook": "A formal evening celebrating Sikh contributions to the Okanagan — keynote speakers, awards, traditional music, and a five-course dinner.",
+      "hook": "A formal evening celebrating Sikh contributions to the Okanagan -- keynote speakers, awards, traditional music, and a five-course dinner.",
       "image_color": "#B45309",
       "tags": [
         "Punjabi",
@@ -829,7 +829,7 @@
         "Cultural",
         "Heritage"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 36,
       "date_label": "Sat, Jun 6",
       "is_featured": false
@@ -846,7 +846,7 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Bernard Ave shuts down to cars and opens up to street performers, food trucks, DJs, and dancing — the ultimate summer kickoff.",
+      "hook": "Bernard Ave shuts down to cars and opens up to street performers, food trucks, DJs, and dancing -- the ultimate summer kickoff.",
       "image_color": "#DC2626",
       "tags": [
         "Block Party",
@@ -854,7 +854,7 @@
         "Summer",
         "Music"
       ],
-      "source_url": "#",
+      "source_url": "https://www.downtownkelowna.com",
       "id": 37,
       "date_label": "Sun, Jun 7",
       "is_featured": false
@@ -869,7 +869,7 @@
       ],
       "is_free": false,
       "price": "$15",
-      "hook": "Beginner lesson at 8, social dancing till midnight — Latin rhythms, great DJs, and a welcoming dance community under one roof.",
+      "hook": "Beginner lesson at 8, social dancing till midnight -- Latin rhythms, great DJs, and a welcoming dance community under one roof.",
       "image_color": "#B91C1C",
       "tags": [
         "Dance",
@@ -893,7 +893,7 @@
       ],
       "is_free": true,
       "price": "Free to Watch",
-      "hook": "Dozens of teams paddle for glory on Okanagan Lake — cheer from the shore with food vendors, live music, and kids' activities all day.",
+      "hook": "Dozens of teams paddle for glory on Okanagan Lake -- cheer from the shore with food vendors, live music, and kids' activities all day.",
       "image_color": "#0369A1",
       "tags": [
         "Sports",
@@ -901,7 +901,7 @@
         "Free",
         "Waterfront"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelownadragonboatfestival.com",
       "id": 39,
       "date_label": "Sat, Jun 13",
       "is_featured": false
@@ -924,7 +924,7 @@
         "Festival",
         "Nightlife"
       ],
-      "source_url": "#",
+      "source_url": "https://www.bnabrewing.com",
       "id": 40,
       "date_label": "Mon, Jun 15",
       "is_featured": false
@@ -942,7 +942,7 @@
       "is_featured": true,
       "is_free": true,
       "price": "Free",
-      "hook": "The biggest South Asian festival in the Interior — bhangra competitions, Punjabi food stalls, live dhol, henna, and fun for all ages at City Park.",
+      "hook": "The biggest South Asian festival in the Interior -- bhangra competitions, Punjabi food stalls, live dhol, henna, and fun for all ages at City Park.",
       "image_color": "#EA580C",
       "tags": [
         "Punjabi",
@@ -951,7 +951,7 @@
         "Cultural",
         "Free"
       ],
-      "source_url": "#",
+      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
       "id": 41,
       "date_label": "Sat, Jun 20"
     },
@@ -966,7 +966,7 @@
       ],
       "is_free": true,
       "price": "Free",
-      "hook": "Greet the longest day of the year with a free sunrise yoga session on the waterfront — mats provided, all levels welcome.",
+      "hook": "Greet the longest day of the year with a free sunrise yoga session on the waterfront -- mats provided, all levels welcome.",
       "image_color": "#D97706",
       "tags": [
         "Yoga",
@@ -974,7 +974,7 @@
         "Free",
         "Summer"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelowna.ca/parks-recreation",
       "id": 42,
       "date_label": "Sun, Jun 21",
       "is_featured": false
@@ -989,7 +989,7 @@
       ],
       "is_free": false,
       "price": "$35 (week pass)",
-      "hook": "Five days of panels, workshops, and pitch competitions — connect with founders, VCs, and the Okanagan tech ecosystem.",
+      "hook": "Five days of panels, workshops, and pitch competitions -- connect with founders, VCs, and the Okanagan tech ecosystem.",
       "image_color": "#1E40AF",
       "tags": [
         "Tech",
@@ -997,7 +997,7 @@
         "Business",
         "Conference"
       ],
-      "source_url": "#",
+      "source_url": "https://www.okanagancolab.com",
       "id": 43,
       "date_label": "Mon, Jun 22",
       "is_featured": false
@@ -1021,7 +1021,7 @@
         "Festival",
         "Free"
       ],
-      "source_url": "#",
+      "source_url": "https://www.kelowna.ca/parks-recreation",
       "id": 44,
       "date_label": "Tue, Jun 30",
       "is_featured": false

@@ -213,12 +213,17 @@
     }
 
     /* ── Cards ── */
+    a.event-card-link {
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+    }
     .event-card {
       background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: 14px; overflow: hidden;
       display: flex; flex-direction: column;
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .3s;
+      cursor: pointer;
     }
     .event-card:hover {
       transform: translateY(-3px);
@@ -527,21 +532,19 @@
     /* ── Ticket button ── */
     function ticketBtn(ev) {
       const arrow = `<svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>`;
+      const url = ev.source_url;
       if (ev.is_free) {
-        return (ev.source_url && ev.source_url !== '#')
-          ? `<a href="${ev.source_url}" target="_blank" rel="noopener" class="tkt-btn free">RSVP ${arrow}</a>`
-          : `<span class="tkt-btn free" style="cursor:default">Free</span>`;
+        return `<span class="tkt-btn free">RSVP ${arrow}</span>`;
       }
-      if (ev.source_url && ev.source_url !== '#')
-        return `<a href="${ev.source_url}" target="_blank" rel="noopener" class="tkt-btn paid">Tickets ${arrow}</a>`;
-      const sub = encodeURIComponent('Inquiry: ' + ev.title);
-      return `<a href="mailto:info@imarkit.com?subject=${sub}" class="tkt-btn ask">Inquire</a>`;
+      return `<span class="tkt-btn paid">Tickets ${arrow}</span>`;
     }
 
     /* ── Build card ── */
     function buildCard(ev) {
       const badges = ev.categories.map(catBadge).join('');
+      const url = ev.source_url;
       return `
+        <a href="${url}" target="_blank" rel="noopener" class="event-card-link">
         <article class="event-card">
           <div class="h-[3px]" style="background:${ev.image_color}"></div>
           <div class="p-3.5 flex flex-col flex-1">
@@ -570,7 +573,8 @@
               ${ticketBtn(ev)}
             </div>
           </div>
-        </article>`;
+        </article>
+        </a>`;
     }
 
     /* ── Active chips ── */
