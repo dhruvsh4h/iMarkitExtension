@@ -16,7 +16,7 @@
               'red-light': '#EF4444',
               black:       '#080808',
               surface:     '#111111',
-              'surface-2': '#181818',
+              'surface-2': '#161616',
               border:      'rgba(255,255,255,0.07)',
               muted:       '#6b7280',
               off:         '#F4F0EB',
@@ -37,7 +37,6 @@
     .no-scroll::-webkit-scrollbar { display: none; }
     .no-scroll { -ms-overflow-style:none; scrollbar-width:none; }
 
-    /* Pulse dot */
     .pulse-dot {
       display:inline-block; width:7px; height:7px; border-radius:50%;
       background:#EF4444; animation:pdot 2s infinite;
@@ -47,7 +46,6 @@
       50%    { opacity:.45; transform:scale(1.35); }
     }
 
-    /* Hero */
     .hero-bg {
       background: linear-gradient(130deg,#1e3a10 0%,#111 65%,#080808 100%);
     }
@@ -60,7 +58,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* Category pills */
     .cat-pill {
       display: inline-flex; align-items: center;
       padding: 6px 14px; border-radius: 999px;
@@ -73,7 +70,6 @@
     .cat-pill:hover { border-color:rgba(185,28,28,.5); color:#F4F0EB; }
     .cat-pill.active { background:#B91C1C; border-color:#B91C1C; color:#fff; }
 
-    /* Price segmented control */
     .price-seg-wrap {
       display: inline-flex;
       border: 1px solid rgba(255,255,255,0.08);
@@ -90,21 +86,36 @@
     .price-seg:hover { color:#F4F0EB; background:rgba(255,255,255,0.04); }
     .price-seg.active { background:#B91C1C; color:#fff; }
 
-    /* Date inputs row */
-    .date-input {
-      background: #141414;
-      border: 1px solid rgba(255,255,255,0.1);
+    /* ── Calendar Box ── */
+    .calendar-box {
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 20px 24px;
+    }
+    .cal-label {
+      display: block;
+      font-size: .65rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 6px;
+    }
+    .cal-input {
+      width: 100%;
+      background: #181818;
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 8px;
-      padding: 6px 12px;
-      font-size: .75rem; font-weight: 500;
+      padding: 10px 12px;
+      font-size: .82rem; font-weight: 500;
       color: #F4F0EB;
       outline: none;
       transition: border-color .15s;
       color-scheme: dark;
+      font-family: inherit;
     }
-    .date-input:focus { border-color: #B91C1C; }
-    .date-input::-webkit-calendar-picker-indicator {
-      filter: invert(0.6);
+    .cal-input:focus { border-color: #B91C1C; box-shadow: 0 0 0 3px rgba(185,28,28,.15); }
+    .cal-input::-webkit-calendar-picker-indicator {
+      filter: invert(0.5);
       cursor: pointer;
     }
 
@@ -127,7 +138,6 @@
       text-transform:uppercase; padding:2px 7px; border-radius:4px;
     }
 
-    /* Ticket button */
     .tkt-btn {
       display:inline-flex; align-items:center; gap:4px;
       font-size:.68rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
@@ -141,7 +151,6 @@
     .tkt-btn.ask  { background:transparent; border:1px solid rgba(185,28,28,.5); color:#EF4444; }
     .tkt-btn.ask:hover { background:rgba(185,28,28,.12); }
 
-    /* Active filter chip */
     .active-chip {
       display:inline-flex; align-items:center; gap:5px;
       font-size:.68rem; font-weight:600;
@@ -152,16 +161,28 @@
     .active-chip button { line-height:1; color:#EF4444; opacity:.7; font-size:.8rem; }
     .active-chip button:hover { opacity:1; }
 
-    /* Grid fade */
     #event-grid { transition:opacity .22s ease; }
     #event-grid.fading { opacity:0; }
+
+    /* Month divider */
+    .month-divider {
+      grid-column: 1 / -1;
+      padding: 4px 0;
+    }
+    .month-label {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 8px;
+    }
   </style>
 </head>
 <body class="min-h-screen font-sans">
 
   <!-- ══ NAV ══════════════════════════════════════════════════════ -->
   <nav class="sticky top-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[.06]">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 h-13 flex items-center justify-between" style="height:52px">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between" style="height:52px">
       <div class="flex items-center gap-2.5">
         <div class="w-6 h-6 rounded-md bg-brand-red flex items-center justify-center">
           <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-white">
@@ -172,12 +193,10 @@
         <span class="text-white/20 text-sm">/</span>
         <span class="font-semibold text-[13px] text-white/60 hidden sm:block">Okanagan Pulse</span>
       </div>
-
       <div class="flex items-center gap-2 text-[11px] text-white/40 font-medium">
         <span class="pulse-dot"></span>
-        <span>Mar 26 - 31, 2026 · Kelowna BC</span>
+        <span id="nav-range">Mar - Jun 2026 · Kelowna BC</span>
       </div>
-
       <a href="#" class="hidden sm:block text-[11px] font-bold bg-brand-red hover:bg-brand-red-light
          transition-colors px-3 py-1.5 rounded-lg text-white tracking-wide">
         Add Event
@@ -190,126 +209,146 @@
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 sm:py-14">
       <span class="inline-block bg-brand-red/90 text-white text-[10px] font-bold
              px-2.5 py-1 rounded tracking-[.12em] uppercase mb-4">
-        Featured This Week
+        Featured This Season
       </span>
       <h1 id="hero-title"
           class="text-[2.2rem] sm:text-5xl font-extrabold text-white leading-[1.1] tracking-tight mb-5">
-        BC Interior Sportsman Show
       </h1>
-
       <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-5 text-sm text-white/60">
-        <span id="hero-date" class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-          </svg>
-          Fri, Mar 27 · 10:00 AM
-        </span>
-        <span id="hero-venue" class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
-          MNP Place
-        </span>
-        <span id="hero-price" class="text-green-400 font-semibold">$15 / Kids Free</span>
+        <span id="hero-date" class="flex items-center gap-1.5"></span>
+        <span id="hero-venue" class="flex items-center gap-1.5"></span>
+        <span id="hero-price" class="text-green-400 font-semibold"></span>
       </div>
-
-      <p id="hero-hook" class="text-white/55 text-[15px] max-w-xl leading-relaxed mb-7">
-        The region's premier outdoor expo.
-      </p>
-
-      <div class="flex flex-wrap gap-2 items-center">
-        <span class="text-[10px] font-semibold uppercase tracking-widest text-white/30 bg-white/[.06] px-2.5 py-1 rounded">Outdoors</span>
-        <span class="text-[10px] font-semibold uppercase tracking-widest text-white/30 bg-white/[.06] px-2.5 py-1 rounded">Family</span>
-        <span class="text-[10px] font-semibold uppercase tracking-widest text-white/30 bg-white/[.06] px-2.5 py-1 rounded">Expo</span>
-        <a id="hero-ticket-btn" href="https://bcsportsmanshow.com" target="_blank" rel="noopener"
-           class="tkt-btn paid ml-1">
-          Get Tickets
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path d="M7 17L17 7M7 7h10v10"/>
-          </svg>
-        </a>
-      </div>
+      <p id="hero-hook" class="text-white/55 text-[15px] max-w-xl leading-relaxed mb-7"></p>
+      <div id="hero-tags" class="flex flex-wrap gap-2 items-center"></div>
     </div>
   </section>
 
-  <!-- ══ FILTER BAR (3 rows: categories, price+date, active chips) ═══ -->
+  <!-- ══ FILTER BAR ═══════════════════════════════════════════════ -->
   <div class="filter-bar sticky top-[52px] z-40">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-3 space-y-3">
-
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-3 space-y-2.5">
       <!-- Row 1: Category pills -->
       <div class="flex items-center gap-1.5 overflow-x-auto no-scroll">
         <button class="cat-pill active" data-filter="all">All Events</button>
-        <button class="cat-pill" data-filter="tonight">Tonight</button>
+        <button class="cat-pill" data-filter="today">Today</button>
+        <button class="cat-pill" data-filter="this-week">This Week</button>
         <button class="cat-pill" data-filter="free">Free</button>
         <button class="cat-pill" data-filter="Family">Family</button>
         <button class="cat-pill" data-filter="Punjabi-Community">Punjabi</button>
         <button class="cat-pill" data-filter="Nightlife">Nightlife</button>
         <button class="cat-pill" data-filter="Business">Business</button>
       </div>
-
-      <!-- Row 2: Price segments + Date range pickers -->
-      <div class="flex flex-wrap items-center gap-3">
-        <!-- Price segments -->
+      <!-- Row 2: Price segments -->
+      <div class="flex items-center gap-3">
         <div class="price-seg-wrap">
           <button class="price-seg" data-price="free">Free</button>
           <button class="price-seg" data-price="budget">Under $20</button>
           <button class="price-seg" data-price="mid">Under $50</button>
           <button class="price-seg" data-price="premium">$50+</button>
         </div>
-
-        <!-- Divider -->
-        <div class="w-px h-5 bg-white/[.08] hidden sm:block"></div>
-
-        <!-- Native date range inputs -->
-        <div class="flex items-center gap-2 flex-wrap">
-          <label class="text-[11px] text-white/35 font-semibold uppercase tracking-wider">From</label>
-          <input type="date" id="date-from" class="date-input" min="2026-03-26" max="2026-03-31" value="" />
-          <label class="text-[11px] text-white/35 font-semibold uppercase tracking-wider">To</label>
-          <input type="date" id="date-to" class="date-input" min="2026-03-26" max="2026-03-31" value="" />
-          <button id="date-clear-btn" onclick="clearDateRange()"
-            class="hidden text-[11px] font-semibold text-brand-red-light hover:text-white transition-colors ml-1">
-            Clear
-          </button>
-        </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ══ CONTENT ═══════════════════════════════════════════════════ -->
+  <!-- ══ MAIN CONTENT ═════════════════════════════════════════════ -->
   <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-7 pb-16">
 
-    <!-- Meta / result bar -->
-    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-      <div class="flex items-center gap-2 flex-wrap">
-        <p class="text-[13px] text-white/40">
-          <span id="result-count" class="text-white font-bold text-sm">10</span>
-          <span class="ml-1">events</span>
-        </p>
-        <div id="active-chips" class="flex items-center gap-1.5 flex-wrap"></div>
-      </div>
+    <div class="flex flex-col lg:flex-row gap-6">
 
-      <!-- Week at a glance -->
-      <div id="day-summary"
-           class="flex items-center gap-3 text-[11px] text-white/35 overflow-x-auto no-scroll font-medium">
-      </div>
-    </div>
+      <!-- ── LEFT: Calendar Box ── -->
+      <aside class="w-full lg:w-[280px] flex-shrink-0">
+        <div class="calendar-box lg:sticky lg:top-[140px]">
+          <!-- Title -->
+          <div class="flex items-center gap-2 mb-5">
+            <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span class="text-[14px] font-bold text-white">Calendar</span>
+          </div>
 
-    <!-- Event grid -->
-    <div id="event-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+          <!-- From -->
+          <div class="mb-4">
+            <label for="date-from" class="cal-label">From</label>
+            <input type="date" id="date-from" class="cal-input" />
+          </div>
 
-    <!-- Empty state -->
-    <div id="empty-state" class="hidden text-center py-24">
-      <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-white/[.03] border border-white/[.06]
-                  flex items-center justify-center">
-        <svg class="w-6 h-6 text-white/15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-        </svg>
+          <!-- To -->
+          <div class="mb-5">
+            <label for="date-to" class="cal-label">To</label>
+            <input type="date" id="date-to" class="cal-input" />
+          </div>
+
+          <!-- Quick presets -->
+          <div class="space-y-1.5 mb-5">
+            <p class="cal-label" style="margin-bottom:4px">Quick Select</p>
+            <button onclick="setPreset('this-week')"
+              class="w-full text-left text-[12px] font-medium text-white/50 hover:text-white
+                     hover:bg-white/[.04] px-3 py-2 rounded-lg transition-colors">
+              This Week
+            </button>
+            <button onclick="setPreset('this-month')"
+              class="w-full text-left text-[12px] font-medium text-white/50 hover:text-white
+                     hover:bg-white/[.04] px-3 py-2 rounded-lg transition-colors">
+              This Month
+            </button>
+            <button onclick="setPreset('next-30')"
+              class="w-full text-left text-[12px] font-medium text-white/50 hover:text-white
+                     hover:bg-white/[.04] px-3 py-2 rounded-lg transition-colors">
+              Next 30 Days
+            </button>
+            <button onclick="setPreset('all')"
+              class="w-full text-left text-[12px] font-medium text-white/50 hover:text-white
+                     hover:bg-white/[.04] px-3 py-2 rounded-lg transition-colors">
+              All Dates
+            </button>
+          </div>
+
+          <!-- Clear -->
+          <button id="date-clear-btn" onclick="clearDateRange()"
+            class="hidden w-full text-center text-[11px] font-bold tracking-wider uppercase
+                   text-brand-red-light hover:text-white border border-brand-red/30
+                   hover:bg-brand-red/10 py-2 rounded-lg transition-all">
+            Clear Dates
+          </button>
+
+          <!-- Active range display -->
+          <div id="cal-range-display" class="hidden mt-4 px-3 py-2.5 rounded-lg bg-brand-red/8 border border-brand-red/20">
+            <p class="text-[10px] font-bold text-brand-red/70 uppercase tracking-widest mb-0.5">Showing</p>
+            <p id="cal-range-text" class="text-[13px] text-white font-semibold"></p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ── RIGHT: Results + Grid ── -->
+      <div class="flex-1 min-w-0">
+
+        <!-- Meta bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <div class="flex items-center gap-2 flex-wrap">
+            <p class="text-[13px] text-white/40">
+              <span id="result-count" class="text-white font-bold text-sm">0</span>
+              <span class="ml-1">events</span>
+            </p>
+            <div id="active-chips" class="flex items-center gap-1.5 flex-wrap"></div>
+          </div>
+        </div>
+
+        <!-- Event grid -->
+        <div id="event-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="hidden text-center py-24">
+          <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-white/[.03] border border-white/[.06]
+                      flex items-center justify-center">
+            <svg class="w-6 h-6 text-white/15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+          <p class="text-white/30 text-sm mb-3">No events match your filters.</p>
+          <button onclick="resetAll()"
+            class="text-brand-red text-sm font-semibold hover:underline">Clear all filters</button>
+        </div>
       </div>
-      <p class="text-white/30 text-sm mb-3">No events match your filters.</p>
-      <button onclick="resetAll()"
-        class="text-brand-red text-sm font-semibold hover:underline">Clear all filters</button>
     </div>
 
     <!-- Promote CTA -->
@@ -320,7 +359,7 @@
           Promote on iMarkit
         </p>
         <p class="text-[13px] text-white/50">
-          Reach Kelowna's most engaged community — list your event for free.
+          Reach Kelowna's most engaged community -- list your event for free.
         </p>
       </div>
       <a href="https://imarkit.com" target="_blank"
@@ -338,19 +377,23 @@
       <a href="https://iMarkit.com" class="text-brand-red hover:opacity-80 transition-opacity">iMarkit.com</a>
       · Kelowna, BC
     </p>
-    <p class="mt-1">March 26-31, 2026 · Public event data</p>
+    <p class="mt-1">Community event data · Updated daily</p>
   </footer>
 
   <!-- ══ SCRIPT ════════════════════════════════════════════════════ -->
   <script>
     /* ── State ── */
     let ALL_EVENTS   = [];
+    let META         = {};
     let activeFilter = 'all';
     let activeBucket = null;
     let calStart     = null;
     let calEnd       = null;
 
-    /* ── Category badge colours (no emojis) ── */
+    /* Today's date (ISO) */
+    const TODAY = new Date().toISOString().slice(0,10);
+
+    /* ── Category badge colours ── */
     const CAT_CLR = {
       'Family':            ['#78350F','#FCD34D'],
       'Punjabi-Community': ['#7C2D12','#FDBA74'],
@@ -360,7 +403,7 @@
     };
     function catBadge(cat) {
       const [bg,fg] = CAT_CLR[cat] || ['#222','#999'];
-      return `<span class="cat-badge" style="background:${bg};color:${fg}">${cat.replace('-',' ')}</span>`;
+      return `<span class="cat-badge" style="background:${bg};color:${fg}">${cat.replace(/-/g,' ')}</span>`;
     }
 
     /* ── Price parse ── */
@@ -382,14 +425,13 @@
     /* ── Ticket button ── */
     function ticketBtn(ev) {
       const arrow = `<svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>`;
-      const url   = ev.source_url;
       if (ev.is_free) {
-        return (url && url !== '#')
-          ? `<a href="${url}" target="_blank" rel="noopener" class="tkt-btn free">RSVP Free ${arrow}</a>`
+        return (ev.source_url && ev.source_url !== '#')
+          ? `<a href="${ev.source_url}" target="_blank" rel="noopener" class="tkt-btn free">RSVP Free ${arrow}</a>`
           : `<span class="tkt-btn free" style="cursor:default">Free Entry</span>`;
       }
-      if (url && url !== '#')
-        return `<a href="${url}" target="_blank" rel="noopener" class="tkt-btn paid">Get Tickets ${arrow}</a>`;
+      if (ev.source_url && ev.source_url !== '#')
+        return `<a href="${ev.source_url}" target="_blank" rel="noopener" class="tkt-btn paid">Get Tickets ${arrow}</a>`;
       const sub = encodeURIComponent('Inquiry: ' + ev.title);
       return `<a href="mailto:info@imarkit.com?subject=${sub}" class="tkt-btn ask">Inquire</a>`;
     }
@@ -401,16 +443,13 @@
         <article class="event-card">
           <div class="h-[3px]" style="background:${ev.image_color}"></div>
           <div class="p-4 flex flex-col flex-1">
-
             <p class="text-[11px] text-white/30 font-medium mb-2.5 flex items-center gap-1.5">
               <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
               ${ev.date_label} · ${ev.time}
             </p>
-
             <h3 class="text-[15px] font-bold text-white leading-snug mb-1">${ev.title}</h3>
-
             <p class="text-[11px] text-white/35 flex items-center gap-1.5 mb-3">
               <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -418,10 +457,7 @@
               </svg>
               ${ev.venue}
             </p>
-
             <p class="text-[13px] text-white/50 leading-relaxed mb-4 flex-1">${ev.hook}</p>
-
-            <!-- Footer -->
             <div class="pt-3 border-t border-white/[.06] flex items-center justify-between gap-2">
               <div class="flex flex-wrap gap-1.5 items-center">
                 ${badges}
@@ -438,7 +474,8 @@
     /* ── Active chips ── */
     const BUCKET_LABEL = { free:'Free', budget:'Under $20', mid:'Under $50', premium:'$50+' };
     const CAT_LABEL    = {
-      all:'All Events', tonight:'Tonight', free:'Free', Family:'Family',
+      all:'All Events', today:'Today', 'this-week':'This Week',
+      free:'Free', Family:'Family',
       'Punjabi-Community':'Punjabi', Nightlife:'Nightlife', Business:'Business'
     };
 
@@ -447,40 +484,87 @@
       const chips = [];
       if (activeFilter !== 'all')
         chips.push(`<span class="active-chip">${CAT_LABEL[activeFilter]||activeFilter}
-          <button onclick="setFilter('all')">×</button></span>`);
+          <button onclick="setFilter('all')">x</button></span>`);
       if (activeBucket)
         chips.push(`<span class="active-chip">${BUCKET_LABEL[activeBucket]}
-          <button onclick="clearBucket()">×</button></span>`);
+          <button onclick="clearBucket()">x</button></span>`);
       if (calStart && calEnd)
-        chips.push(`<span class="active-chip">${fmtDate(calStart)} - ${fmtDate(calEnd)}
-          <button onclick="clearDateRange()">×</button></span>`);
+        chips.push(`<span class="active-chip">${fmtDateShort(calStart)} - ${fmtDateShort(calEnd)}
+          <button onclick="clearDateRange()">x</button></span>`);
       else if (calStart)
-        chips.push(`<span class="active-chip">${fmtDate(calStart)}
-          <button onclick="clearDateRange()">×</button></span>`);
+        chips.push(`<span class="active-chip">${fmtDateShort(calStart)}
+          <button onclick="clearDateRange()">x</button></span>`);
       wrap.innerHTML = chips.join('');
     }
 
-    /* ── Render grid ── */
+    /* ── Get end of current week (Sunday) ── */
+    function getEndOfWeek(isoDate) {
+      const d = new Date(isoDate + 'T12:00:00');
+      const dayOfWeek = d.getDay(); // 0=Sun
+      const daysToSun = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+      d.setDate(d.getDate() + daysToSun);
+      return d.toISOString().slice(0,10);
+    }
+
+    /* ── Get end of current month ── */
+    function getEndOfMonth(isoDate) {
+      const d = new Date(isoDate + 'T12:00:00');
+      d.setMonth(d.getMonth() + 1, 0);
+      return d.toISOString().slice(0,10);
+    }
+
+    /* ── Month name from ISO ── */
+    function monthOf(iso) {
+      const m = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      return m[parseInt(iso.slice(5,7)) - 1] + ' ' + iso.slice(0,4);
+    }
+
+    /* ── Render grid with month dividers ── */
     function renderGrid() {
-      const today = '2026-03-27';
       let list = ALL_EVENTS;
-      if (activeFilter === 'tonight')    list = list.filter(e => e.date === today);
-      else if (activeFilter === 'free')  list = list.filter(e => e.is_free);
-      else if (activeFilter !== 'all')   list = list.filter(e => e.categories.includes(activeFilter));
+
+      // Category / quick filter
+      if (activeFilter === 'today')          list = list.filter(e => e.date === TODAY);
+      else if (activeFilter === 'this-week') list = list.filter(e => e.date >= TODAY && e.date <= getEndOfWeek(TODAY));
+      else if (activeFilter === 'free')      list = list.filter(e => e.is_free);
+      else if (activeFilter !== 'all')       list = list.filter(e => e.categories.includes(activeFilter));
+
+      // Price bucket
       if (activeBucket) list = list.filter(e => matchBucket(e, activeBucket));
+
+      // Date range
       if (calStart && calEnd)  list = list.filter(e => e.date >= calStart && e.date <= calEnd);
-      else if (calStart)       list = list.filter(e => e.date === calStart);
+      else if (calStart)       list = list.filter(e => e.date >= calStart);
 
       const grid  = document.getElementById('event-grid');
       const empty = document.getElementById('empty-state');
       grid.classList.add('fading');
+
       setTimeout(() => {
         document.getElementById('result-count').textContent = list.length;
-        if (list.length === 0) { grid.innerHTML=''; empty.classList.remove('hidden'); }
-        else { empty.classList.add('hidden'); grid.innerHTML = list.map(buildCard).join(''); }
+        if (list.length === 0) {
+          grid.innerHTML = '';
+          empty.classList.remove('hidden');
+        } else {
+          empty.classList.add('hidden');
+          // Group by month and inject dividers
+          let html = '';
+          let lastMonth = '';
+          list.forEach(ev => {
+            const m = monthOf(ev.date);
+            if (m !== lastMonth) {
+              lastMonth = m;
+              html += `<div class="month-divider"><p class="month-label">${m}</p></div>`;
+            }
+            html += buildCard(ev);
+          });
+          grid.innerHTML = html;
+        }
         grid.classList.remove('fading');
-      }, 190);
+      }, 180);
+
       refreshChips();
+      updateCalRangeDisplay();
     }
 
     /* ── Filter setters ── */
@@ -505,9 +589,9 @@
       setFilter('all');
     }
 
-    /* ── Date range (native inputs) ── */
-    const dateFrom = document.getElementById('date-from');
-    const dateTo   = document.getElementById('date-to');
+    /* ── Calendar date inputs ── */
+    const dateFrom  = document.getElementById('date-from');
+    const dateTo    = document.getElementById('date-to');
     const dateClear = document.getElementById('date-clear-btn');
 
     dateFrom.addEventListener('change', handleDateChange);
@@ -516,15 +600,10 @@
     function handleDateChange() {
       const from = dateFrom.value;
       const to   = dateTo.value;
-
-      if (from && to && to < from) {
-        dateTo.value = from;
-      }
+      if (from && to && to < from) dateTo.value = from;
 
       calStart = dateFrom.value || null;
       calEnd   = dateTo.value || null;
-
-      // If only "from" set, also use it as the end
       if (calStart && !calEnd) calEnd = calStart;
       if (!calStart && calEnd) calStart = calEnd;
 
@@ -540,20 +619,43 @@
       renderGrid();
     }
 
-    function fmtDate(iso) {
-      const d = new Date(iso+'T12:00:00');
-      return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()] + ' Mar ' + d.getDate();
+    function setPreset(p) {
+      if (p === 'all') {
+        clearDateRange();
+        return;
+      }
+      const start = TODAY;
+      let end;
+      if (p === 'this-week')  end = getEndOfWeek(TODAY);
+      else if (p === 'this-month') end = getEndOfMonth(TODAY);
+      else if (p === 'next-30') {
+        const d = new Date(TODAY + 'T12:00:00');
+        d.setDate(d.getDate() + 30);
+        end = d.toISOString().slice(0,10);
+      }
+      dateFrom.value = start;
+      dateTo.value = end;
+      calStart = start;
+      calEnd = end;
+      dateClear.classList.remove('hidden');
+      renderGrid();
     }
 
-    /* ── Day summary ── */
-    function buildSummary(evs) {
-      const m = {};
-      evs.forEach(e => { m[e.date_label] = (m[e.date_label]||0) + 1; });
-      document.getElementById('day-summary').innerHTML =
-        Object.entries(m).map(([d,n], i, arr) => `
-          <span>${d} <strong class="text-white/60">${n}</strong></span>
-          ${i < arr.length - 1 ? '<span class="opacity-30">·</span>' : ''}
-        `).join('');
+    function updateCalRangeDisplay() {
+      const disp = document.getElementById('cal-range-display');
+      const txt  = document.getElementById('cal-range-text');
+      if (calStart && calEnd) {
+        disp.classList.remove('hidden');
+        txt.textContent = `${fmtDateShort(calStart)} - ${fmtDateShort(calEnd)}`;
+      } else {
+        disp.classList.add('hidden');
+      }
+    }
+
+    function fmtDateShort(iso) {
+      const d = new Date(iso+'T12:00:00');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return months[d.getMonth()] + ' ' + d.getDate();
     }
 
     /* ── Hero ── */
@@ -571,8 +673,17 @@
         </svg>${f.venue}`;
       document.getElementById('hero-price').textContent = f.price;
       document.getElementById('hero-hook').textContent = f.hook;
-      const btn = document.getElementById('hero-ticket-btn');
-      btn.href = (f.source_url && f.source_url !== '#') ? f.source_url : '#';
+      const tagsHtml = (f.tags || []).map(t =>
+        `<span class="text-[10px] font-semibold uppercase tracking-widest text-white/30 bg-white/[.06] px-2.5 py-1 rounded">${t}</span>`
+      ).join('');
+      const url = (f.source_url && f.source_url !== '#') ? f.source_url : '#';
+      document.getElementById('hero-tags').innerHTML = tagsHtml + `
+        <a href="${url}" target="_blank" rel="noopener" class="tkt-btn paid ml-1">
+          Get Tickets
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M7 17L17 7M7 7h10v10"/>
+          </svg>
+        </a>`;
     }
 
     /* ── Wire up ── */
@@ -582,17 +693,38 @@
       s.addEventListener('click', () => setBucket(s.dataset.price)));
 
     /* ── Boot ── */
-    fetch('data/events.json')
+    fetch('data/events.json?v=' + Date.now())
       .then(r => r.json())
       .then(data => {
         ALL_EVENTS = data.events;
-        buildSummary(ALL_EVENTS);
+        META = data;
+
+        // Set date input ranges and pre-populate with full range
+        if (data.date_min && data.date_max) {
+          dateFrom.min = data.date_min;
+          dateFrom.max = data.date_max;
+          dateTo.min   = data.date_min;
+          dateTo.max   = data.date_max;
+
+          // Pre-fill: from today (or first event) to last event
+          const startDate = TODAY >= data.date_min ? TODAY : data.date_min;
+          dateFrom.value = startDate;
+          dateTo.value   = data.date_max;
+          calStart = startDate;
+          calEnd   = data.date_max;
+          dateClear.classList.remove('hidden');
+        }
+
         renderGrid();
-        populateHero(ALL_EVENTS.find(e => e.is_featured));
+
+        // Find nearest upcoming featured event
+        const featured = ALL_EVENTS.find(e => e.is_featured && e.date >= TODAY)
+                      || ALL_EVENTS.find(e => e.is_featured);
+        populateHero(featured);
       })
       .catch(() => {
         document.getElementById('event-grid').innerHTML =
-          `<p class="col-span-4 text-center text-white/20 py-20">Could not load events.json</p>`;
+          `<p class="col-span-3 text-center text-white/20 py-20">Could not load events.json</p>`;
       });
   </script>
 </body>
