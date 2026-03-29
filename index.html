@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,12 +14,6 @@
               red:         '#B91C1C',
               'red-dim':   '#7F1D1D',
               'red-light': '#EF4444',
-              black:       '#080808',
-              surface:     '#111111',
-              'surface-2': '#161616',
-              border:      'rgba(255,255,255,0.07)',
-              muted:       '#6b7280',
-              off:         '#F4F0EB',
             }
           },
           fontFamily: { sans: ['Inter','system-ui','sans-serif'] }
@@ -32,7 +26,94 @@
 
   <style>
     * { box-sizing: border-box; }
-    body { background: #080808; color: #F4F0EB; -webkit-font-smoothing: antialiased; }
+
+    /* ══════════════════════════════════════════
+       THEME VARIABLES
+    ══════════════════════════════════════════ */
+    :root, [data-theme="dark"] {
+      --bg:            #080808;
+      --bg-surface:    #111111;
+      --bg-surface-2:  #161616;
+      --bg-input:      #181818;
+      --bg-filter:     rgba(8,8,8,0.92);
+      --text:          #F4F0EB;
+      --text-heading:  #FFFFFF;
+      --text-body:     rgba(255,255,255,0.50);
+      --text-muted:    #6b7280;
+      --text-dim:      rgba(255,255,255,0.30);
+      --text-label:    rgba(255,255,255,0.35);
+      --border:        rgba(255,255,255,0.07);
+      --border-hover:  rgba(255,255,255,0.15);
+      --card-shadow:   0 12px 40px rgba(0,0,0,.5);
+      --pill-text:     #6b7280;
+      --pill-border:   rgba(255,255,255,0.08);
+      --hero-gradient: linear-gradient(130deg,#1e3a10 0%,#111 65%,#080808 100%);
+      --cal-picker:    invert(0.5);
+      --cal-scheme:    dark;
+      --badge-free-bg: #064E3B;
+      --badge-free-fg: #6EE7B7;
+      --empty-icon-bg: rgba(255,255,255,0.03);
+      --empty-icon-bd: rgba(255,255,255,0.06);
+      --tag-bg:        rgba(255,255,255,0.06);
+      --tag-text:      rgba(255,255,255,0.30);
+      --month-label:   rgba(255,255,255,0.25);
+      --month-line:    rgba(255,255,255,0.06);
+      --cta-bg:        #111;
+      --cta-border:    rgba(255,255,255,0.06);
+      --cta-text:      rgba(255,255,255,0.50);
+      --footer-text:   rgba(255,255,255,0.25);
+      --footer-name:   rgba(255,255,255,0.50);
+      --footer-border: rgba(255,255,255,0.05);
+      --nav-bg:        rgba(8,8,8,0.95);
+      --toggle-bg:     rgba(255,255,255,0.06);
+      --toggle-hover:  rgba(255,255,255,0.12);
+    }
+
+    [data-theme="light"] {
+      --bg:            #F5F5F4;
+      --bg-surface:    #FFFFFF;
+      --bg-surface-2:  #F9FAFB;
+      --bg-input:      #FFFFFF;
+      --bg-filter:     rgba(255,255,255,0.92);
+      --text:          #1F2937;
+      --text-heading:  #111827;
+      --text-body:     #4B5563;
+      --text-muted:    #6b7280;
+      --text-dim:      #9CA3AF;
+      --text-label:    #6B7280;
+      --border:        rgba(0,0,0,0.08);
+      --border-hover:  rgba(0,0,0,0.18);
+      --card-shadow:   0 4px 24px rgba(0,0,0,.06);
+      --pill-text:     #4B5563;
+      --pill-border:   rgba(0,0,0,0.10);
+      --hero-gradient: linear-gradient(130deg,#7F1D1D 0%,#B91C1C 50%,#991B1B 100%);
+      --cal-picker:    none;
+      --cal-scheme:    light;
+      --badge-free-bg: #D1FAE5;
+      --badge-free-fg: #065F46;
+      --empty-icon-bg: rgba(0,0,0,0.03);
+      --empty-icon-bd: rgba(0,0,0,0.06);
+      --tag-bg:        rgba(255,255,255,0.70);
+      --tag-text:      rgba(255,255,255,0.85);
+      --month-label:   #6B7280;
+      --month-line:    rgba(0,0,0,0.08);
+      --cta-bg:        #FFFFFF;
+      --cta-border:    rgba(0,0,0,0.08);
+      --cta-text:      #4B5563;
+      --footer-text:   #9CA3AF;
+      --footer-name:   #6B7280;
+      --footer-border: rgba(0,0,0,0.06);
+      --nav-bg:        rgba(255,255,255,0.95);
+      --toggle-bg:     rgba(0,0,0,0.05);
+      --toggle-hover:  rgba(0,0,0,0.10);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      transition: background .3s ease, color .3s ease;
+    }
 
     .no-scroll::-webkit-scrollbar { display: none; }
     .no-scroll { -ms-overflow-style:none; scrollbar-width:none; }
@@ -46,108 +127,120 @@
       50%    { opacity:.45; transform:scale(1.35); }
     }
 
-    .hero-bg {
-      background: linear-gradient(130deg,#1e3a10 0%,#111 65%,#080808 100%);
-    }
+    .hero-bg { background: var(--hero-gradient); }
 
     /* ── Filter Bar ── */
     .filter-bar {
-      background: rgba(8,8,8,0.92);
+      background: var(--bg-filter);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid var(--border);
     }
 
     .cat-pill {
       display: inline-flex; align-items: center;
       padding: 6px 14px; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid var(--pill-border);
       font-size: .72rem; font-weight: 600; letter-spacing:.02em;
-      color: #6b7280; white-space: nowrap;
+      color: var(--pill-text); white-space: nowrap;
       cursor: pointer; transition: all .15s ease;
       background: transparent; user-select: none;
     }
-    .cat-pill:hover { border-color:rgba(185,28,28,.5); color:#F4F0EB; }
+    .cat-pill:hover { border-color:rgba(185,28,28,.5); color: var(--text-heading); }
     .cat-pill.active { background:#B91C1C; border-color:#B91C1C; color:#fff; }
 
     .price-seg-wrap {
       display: inline-flex;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid var(--pill-border);
       border-radius: 8px; overflow: hidden; flex-shrink: 0;
     }
     .price-seg {
       padding: 6px 14px;
       font-size: .72rem; font-weight: 600; letter-spacing:.03em;
-      color: #6b7280; cursor: pointer; transition: all .15s ease;
-      border-right: 1px solid rgba(255,255,255,0.06);
+      color: var(--pill-text); cursor: pointer; transition: all .15s ease;
+      border-right: 1px solid var(--border);
       background: transparent; white-space: nowrap; user-select: none;
     }
     .price-seg:last-child { border-right: none; }
-    .price-seg:hover { color:#F4F0EB; background:rgba(255,255,255,0.04); }
+    .price-seg:hover { color: var(--text-heading); background: var(--toggle-bg); }
     .price-seg.active { background:#B91C1C; color:#fff; }
 
     /* ── Calendar Box ── */
     .calendar-box {
-      background: #111;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 20px 24px;
+      transition: background .3s, border-color .3s;
     }
     .cal-label {
       display: block;
       font-size: .65rem; font-weight: 700;
       letter-spacing: .1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: var(--text-label);
       margin-bottom: 6px;
     }
     .cal-input {
       width: 100%;
-      background: #181818;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--bg-input);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 10px 12px;
       font-size: .82rem; font-weight: 500;
-      color: #F4F0EB;
+      color: var(--text);
       outline: none;
-      transition: border-color .15s;
-      color-scheme: dark;
+      transition: border-color .15s, background .3s;
+      color-scheme: var(--cal-scheme);
       font-family: inherit;
     }
     .cal-input:focus { border-color: #B91C1C; box-shadow: 0 0 0 3px rgba(185,28,28,.15); }
     .cal-input::-webkit-calendar-picker-indicator {
-      filter: invert(0.5);
+      filter: var(--cal-picker);
       cursor: pointer;
+    }
+
+    .cal-preset-btn {
+      width: 100%; text-align: left;
+      font-size: 12px; font-weight: 500;
+      color: var(--text-muted);
+      padding: 8px 12px; border-radius: 8px;
+      transition: all .15s;
+      cursor: pointer; background: transparent;
+    }
+    .cal-preset-btn:hover {
+      color: var(--text-heading);
+      background: var(--toggle-bg);
     }
 
     /* ── Cards ── */
     .event-card {
-      background: #111;
-      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: 14px; overflow: hidden;
       display: flex; flex-direction: column;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .3s;
     }
     .event-card:hover {
       transform: translateY(-3px);
       border-color: rgba(185,28,28,.3);
-      box-shadow: 0 12px 40px rgba(0,0,0,.5);
+      box-shadow: var(--card-shadow);
     }
 
     .cat-badge {
-      font-size:.6rem; font-weight:700; letter-spacing:.08em;
+      font-size:.58rem; font-weight:700; letter-spacing:.08em;
       text-transform:uppercase; padding:2px 7px; border-radius:4px;
     }
 
     .tkt-btn {
       display:inline-flex; align-items:center; gap:4px;
-      font-size:.68rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
-      padding:5px 11px; border-radius:6px; text-decoration:none;
+      font-size:.65rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+      padding:4px 10px; border-radius:6px; text-decoration:none;
       transition: all .15s; white-space:nowrap; cursor:pointer;
     }
     .tkt-btn.paid { background:#B91C1C; color:#fff; }
     .tkt-btn.paid:hover { background:#EF4444; }
-    .tkt-btn.free { background:#064E3B; color:#6EE7B7; }
-    .tkt-btn.free:hover { background:#065F46; }
+    .tkt-btn.free { background: var(--badge-free-bg); color: var(--badge-free-fg); }
+    .tkt-btn.free:hover { opacity:.85; }
     .tkt-btn.ask  { background:transparent; border:1px solid rgba(185,28,28,.5); color:#EF4444; }
     .tkt-btn.ask:hover { background:rgba(185,28,28,.12); }
 
@@ -158,76 +251,102 @@
       background:rgba(185,28,28,.12); border:1px solid rgba(185,28,28,.3);
       color:#EF4444; white-space:nowrap;
     }
-    .active-chip button { line-height:1; color:#EF4444; opacity:.7; font-size:.8rem; }
+    .active-chip button { line-height:1; color:#EF4444; opacity:.7; font-size:.8rem; background:none; border:none; cursor:pointer; }
     .active-chip button:hover { opacity:1; }
 
     #event-grid { transition:opacity .22s ease; }
     #event-grid.fading { opacity:0; }
 
-    /* Month divider */
-    .month-divider {
-      grid-column: 1 / -1;
-      padding: 4px 0;
-    }
+    .month-divider { grid-column: 1 / -1; padding: 4px 0; }
     .month-label {
       font-size: .7rem; font-weight: 700;
       letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: var(--month-label);
+      border-bottom: 1px solid var(--month-line);
       padding-bottom: 8px;
     }
+
+    /* ── Theme toggle ── */
+    .theme-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--toggle-bg);
+      border: 1px solid var(--border);
+      cursor: pointer; transition: all .2s;
+      color: var(--text-muted);
+    }
+    .theme-toggle:hover {
+      background: var(--toggle-hover);
+      color: var(--text-heading);
+    }
+
+    /* Light mode overrides for badges */
+    [data-theme="light"] .cat-badge[data-cat="Family"]            { background:#FEF3C7; color:#92400E; }
+    [data-theme="light"] .cat-badge[data-cat="Punjabi-Community"] { background:#FFEDD5; color:#9A3412; }
+    [data-theme="light"] .cat-badge[data-cat="Nightlife"]         { background:#EDE9FE; color:#5B21B6; }
+    [data-theme="light"] .cat-badge[data-cat="Business"]          { background:#DBEAFE; color:#1E40AF; }
+    [data-theme="light"] .cat-badge[data-cat="Free"]              { background:#D1FAE5; color:#065F46; }
   </style>
 </head>
 <body class="min-h-screen font-sans">
 
   <!-- ══ NAV ══════════════════════════════════════════════════════ -->
-  <nav class="sticky top-0 z-50 bg-[#080808]/95 backdrop-blur-md border-b border-white/[.06]">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between" style="height:52px">
+  <nav class="sticky top-0 z-50 border-b" style="background:var(--nav-bg); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-color:var(--border)">
+    <div class="max-w-[1600px] mx-auto px-5 lg:px-8 flex items-center justify-between" style="height:52px">
       <div class="flex items-center gap-2.5">
         <div class="w-6 h-6 rounded-md bg-brand-red flex items-center justify-center">
           <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 fill-white">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
           </svg>
         </div>
-        <span class="font-bold text-[13px] text-white tracking-tight">iMarkit</span>
-        <span class="text-white/20 text-sm">/</span>
-        <span class="font-semibold text-[13px] text-white/60 hidden sm:block">Okanagan Pulse</span>
+        <span class="font-bold text-[13px] tracking-tight" style="color:var(--text-heading)">iMarkit</span>
+        <span class="text-sm" style="color:var(--border-hover)">/</span>
+        <span class="font-semibold text-[13px] hidden sm:block" style="color:var(--text-muted)">Okanagan Pulse</span>
       </div>
-      <div class="flex items-center gap-2 text-[11px] text-white/40 font-medium">
+      <div class="flex items-center gap-2 text-[11px] font-medium" style="color:var(--text-dim)">
         <span class="pulse-dot"></span>
         <span id="nav-range">Mar - Jun 2026 · Kelowna BC</span>
       </div>
-      <a href="#" class="hidden sm:block text-[11px] font-bold bg-brand-red hover:bg-brand-red-light
-         transition-colors px-3 py-1.5 rounded-lg text-white tracking-wide">
-        Add Event
-      </a>
+      <div class="flex items-center gap-2.5">
+        <!-- Theme toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" title="Toggle light/dark mode">
+          <svg id="icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg id="icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+        </button>
+        <a href="#" class="hidden sm:block text-[11px] font-bold bg-brand-red hover:bg-brand-red-light
+           transition-colors px-3 py-1.5 rounded-lg text-white tracking-wide">
+          Add Event
+        </a>
+      </div>
     </div>
   </nav>
 
   <!-- ══ HERO ═════════════════════════════════════════════════════ -->
-  <section class="hero-bg border-b border-white/[.05]">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 sm:py-14">
-      <span class="inline-block bg-brand-red/90 text-white text-[10px] font-bold
+  <section class="hero-bg border-b" style="border-color:var(--border)">
+    <div class="max-w-[1600px] mx-auto px-5 lg:px-8 py-10 sm:py-14">
+      <span class="inline-block bg-white/20 text-white text-[10px] font-bold
              px-2.5 py-1 rounded tracking-[.12em] uppercase mb-4">
         Featured This Season
       </span>
       <h1 id="hero-title"
-          class="text-[2.2rem] sm:text-5xl font-extrabold text-white leading-[1.1] tracking-tight mb-5">
-      </h1>
-      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-5 text-sm text-white/60">
+          class="text-[2.2rem] sm:text-5xl font-extrabold text-white leading-[1.1] tracking-tight mb-5"></h1>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-5 text-sm text-white/70">
         <span id="hero-date" class="flex items-center gap-1.5"></span>
         <span id="hero-venue" class="flex items-center gap-1.5"></span>
-        <span id="hero-price" class="text-green-400 font-semibold"></span>
+        <span id="hero-price" class="text-green-300 font-semibold"></span>
       </div>
-      <p id="hero-hook" class="text-white/55 text-[15px] max-w-xl leading-relaxed mb-7"></p>
+      <p id="hero-hook" class="text-white/65 text-[15px] max-w-xl leading-relaxed mb-7"></p>
       <div id="hero-tags" class="flex flex-wrap gap-2 items-center"></div>
     </div>
   </section>
 
   <!-- ══ FILTER BAR ═══════════════════════════════════════════════ -->
   <div class="filter-bar sticky top-[52px] z-40">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-3 space-y-2.5">
-      <!-- Row 1: Category pills -->
+    <div class="max-w-[1600px] mx-auto px-5 lg:px-8 py-3 space-y-2.5">
       <div class="flex items-center gap-1.5 overflow-x-auto no-scroll">
         <button class="cat-pill active" data-filter="all">All Events</button>
         <button class="cat-pill" data-filter="today">Today</button>
@@ -238,7 +357,6 @@
         <button class="cat-pill" data-filter="Nightlife">Nightlife</button>
         <button class="cat-pill" data-filter="Business">Business</button>
       </div>
-      <!-- Row 2: Price segments -->
       <div class="flex items-center gap-3">
         <div class="price-seg-wrap">
           <button class="price-seg" data-price="free">Free</button>
@@ -251,116 +369,80 @@
   </div>
 
   <!-- ══ MAIN CONTENT ═════════════════════════════════════════════ -->
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 pt-7 pb-16">
-
+  <div class="max-w-[1600px] mx-auto px-5 lg:px-8 pt-7 pb-16">
     <div class="flex flex-col lg:flex-row gap-6">
 
       <!-- ── LEFT: Calendar Box ── -->
-      <aside class="w-full lg:w-[280px] flex-shrink-0">
+      <aside class="w-full lg:w-[240px] flex-shrink-0">
         <div class="calendar-box lg:sticky lg:top-[140px]">
-          <!-- Title -->
           <div class="flex items-center gap-2 mb-5">
             <svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
-            <span class="text-[14px] font-bold text-white">Calendar</span>
+            <span class="text-[14px] font-bold" style="color:var(--text-heading)">Calendar</span>
           </div>
-
-          <!-- From -->
           <div class="mb-4">
             <label for="date-from" class="cal-label">From</label>
             <input type="date" id="date-from" class="cal-input" />
           </div>
-
-          <!-- To -->
           <div class="mb-5">
             <label for="date-to" class="cal-label">To</label>
             <input type="date" id="date-to" class="cal-input" />
           </div>
-
-          <!-- Quick presets -->
-          <div class="space-y-1.5 mb-5">
+          <div class="space-y-1 mb-5">
             <p class="cal-label" style="margin-bottom:4px">Quick Select</p>
-            <button onclick="setPreset('this-week')"
-              class="w-full text-left text-[12px] font-medium text-white/50 hover:text-white
-                     hover:bg-white/[.04] px-3 py-2 rounded-lg transition-colors">
-              This Week
-            </button>
-            <button onclick="setPreset('this-month')"
-              class="w-full text-left text-[12px] font-medium text-white/50 hover:text-white
-                     hover:bg-white/[.04] px-3 py-2 rounded-lg transition-colors">
-              This Month
-            </button>
-            <button onclick="setPreset('next-30')"
-              class="w-full text-left text-[12px] font-medium text-white/50 hover:text-white
-                     hover:bg-white/[.04] px-3 py-2 rounded-lg transition-colors">
-              Next 30 Days
-            </button>
-            <button onclick="setPreset('all')"
-              class="w-full text-left text-[12px] font-medium text-white/50 hover:text-white
-                     hover:bg-white/[.04] px-3 py-2 rounded-lg transition-colors">
-              All Dates
-            </button>
+            <button onclick="setPreset('this-week')" class="cal-preset-btn">This Week</button>
+            <button onclick="setPreset('this-month')" class="cal-preset-btn">This Month</button>
+            <button onclick="setPreset('next-30')" class="cal-preset-btn">Next 30 Days</button>
+            <button onclick="setPreset('all')" class="cal-preset-btn">All Dates</button>
           </div>
-
-          <!-- Clear -->
           <button id="date-clear-btn" onclick="clearDateRange()"
             class="hidden w-full text-center text-[11px] font-bold tracking-wider uppercase
                    text-brand-red-light hover:text-white border border-brand-red/30
                    hover:bg-brand-red/10 py-2 rounded-lg transition-all">
             Clear Dates
           </button>
-
-          <!-- Active range display -->
-          <div id="cal-range-display" class="hidden mt-4 px-3 py-2.5 rounded-lg bg-brand-red/8 border border-brand-red/20">
-            <p class="text-[10px] font-bold text-brand-red/70 uppercase tracking-widest mb-0.5">Showing</p>
-            <p id="cal-range-text" class="text-[13px] text-white font-semibold"></p>
+          <div id="cal-range-display" class="hidden mt-4 px-3 py-2.5 rounded-lg" style="background:rgba(185,28,28,.08); border:1px solid rgba(185,28,28,.2)">
+            <p class="text-[10px] font-bold uppercase tracking-widest mb-0.5" style="color:rgba(185,28,28,.6)">Showing</p>
+            <p id="cal-range-text" class="text-[13px] font-semibold" style="color:var(--text-heading)"></p>
           </div>
         </div>
       </aside>
 
       <!-- ── RIGHT: Results + Grid ── -->
       <div class="flex-1 min-w-0">
-
-        <!-- Meta bar -->
         <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
           <div class="flex items-center gap-2 flex-wrap">
-            <p class="text-[13px] text-white/40">
-              <span id="result-count" class="text-white font-bold text-sm">0</span>
+            <p class="text-[13px]" style="color:var(--text-muted)">
+              <span id="result-count" class="font-bold text-sm" style="color:var(--text-heading)">0</span>
               <span class="ml-1">events</span>
             </p>
             <div id="active-chips" class="flex items-center gap-1.5 flex-wrap"></div>
           </div>
         </div>
 
-        <!-- Event grid -->
-        <div id="event-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+        <!-- Event grid: 5 cols on 2xl -->
+        <div id="event-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5"></div>
 
-        <!-- Empty state -->
         <div id="empty-state" class="hidden text-center py-24">
-          <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-white/[.03] border border-white/[.06]
-                      flex items-center justify-center">
-            <svg class="w-6 h-6 text-white/15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <div class="w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center"
+               style="background:var(--empty-icon-bg); border:1px solid var(--empty-icon-bd)">
+            <svg class="w-6 h-6" style="color:var(--text-dim)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
           </div>
-          <p class="text-white/30 text-sm mb-3">No events match your filters.</p>
-          <button onclick="resetAll()"
-            class="text-brand-red text-sm font-semibold hover:underline">Clear all filters</button>
+          <p class="text-sm mb-3" style="color:var(--text-dim)">No events match your filters.</p>
+          <button onclick="resetAll()" class="text-brand-red text-sm font-semibold hover:underline">Clear all filters</button>
         </div>
       </div>
     </div>
 
     <!-- Promote CTA -->
-    <div class="mt-14 rounded-2xl border border-white/[.06] bg-[#111]
-                px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="mt-14 rounded-2xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4"
+         style="background:var(--cta-bg); border:1px solid var(--cta-border)">
       <div>
-        <p class="text-[10px] font-bold uppercase tracking-[.14em] text-brand-red mb-1">
-          Promote on iMarkit
-        </p>
-        <p class="text-[13px] text-white/50">
-          Reach Kelowna's most engaged community -- list your event for free.
-        </p>
+        <p class="text-[10px] font-bold uppercase tracking-[.14em] text-brand-red mb-1">Promote on iMarkit</p>
+        <p class="text-[13px]" style="color:var(--cta-text)">Reach Kelowna's most engaged community -- list your event for free.</p>
       </div>
       <a href="https://imarkit.com" target="_blank"
          class="flex-shrink-0 bg-brand-red hover:bg-brand-red-light transition-colors
@@ -371,9 +453,9 @@
   </div>
 
   <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
-  <footer class="border-t border-white/[.05] py-7 text-center text-[11px] text-white/25">
+  <footer class="py-7 text-center text-[11px]" style="border-top:1px solid var(--footer-border); color:var(--footer-text)">
     <p>
-      <span class="text-white/50 font-semibold">Okanagan Pulse</span> ·
+      <span class="font-semibold" style="color:var(--footer-name)">Okanagan Pulse</span> ·
       <a href="https://iMarkit.com" class="text-brand-red hover:opacity-80 transition-opacity">iMarkit.com</a>
       · Kelowna, BC
     </p>
@@ -390,8 +472,28 @@
     let calStart     = null;
     let calEnd       = null;
 
-    /* Today's date (ISO) */
     const TODAY = new Date().toISOString().slice(0,10);
+
+    /* ── Theme toggle ── */
+    function toggleTheme() {
+      const html = document.documentElement;
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('okanagan-pulse-theme', next);
+      updateThemeIcon(next);
+    }
+    function updateThemeIcon(theme) {
+      document.getElementById('icon-sun').classList.toggle('hidden', theme === 'dark');
+      document.getElementById('icon-moon').classList.toggle('hidden', theme === 'light');
+    }
+    // Restore saved theme
+    (function() {
+      const saved = localStorage.getItem('okanagan-pulse-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+        updateThemeIcon(saved);
+      }
+    })();
 
     /* ── Category badge colours ── */
     const CAT_CLR = {
@@ -403,7 +505,7 @@
     };
     function catBadge(cat) {
       const [bg,fg] = CAT_CLR[cat] || ['#222','#999'];
-      return `<span class="cat-badge" style="background:${bg};color:${fg}">${cat.replace(/-/g,' ')}</span>`;
+      return `<span class="cat-badge" data-cat="${cat}" style="background:${bg};color:${fg}">${cat.replace(/-/g,' ')}</span>`;
     }
 
     /* ── Price parse ── */
@@ -427,11 +529,11 @@
       const arrow = `<svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>`;
       if (ev.is_free) {
         return (ev.source_url && ev.source_url !== '#')
-          ? `<a href="${ev.source_url}" target="_blank" rel="noopener" class="tkt-btn free">RSVP Free ${arrow}</a>`
-          : `<span class="tkt-btn free" style="cursor:default">Free Entry</span>`;
+          ? `<a href="${ev.source_url}" target="_blank" rel="noopener" class="tkt-btn free">RSVP ${arrow}</a>`
+          : `<span class="tkt-btn free" style="cursor:default">Free</span>`;
       }
       if (ev.source_url && ev.source_url !== '#')
-        return `<a href="${ev.source_url}" target="_blank" rel="noopener" class="tkt-btn paid">Get Tickets ${arrow}</a>`;
+        return `<a href="${ev.source_url}" target="_blank" rel="noopener" class="tkt-btn paid">Tickets ${arrow}</a>`;
       const sub = encodeURIComponent('Inquiry: ' + ev.title);
       return `<a href="mailto:info@imarkit.com?subject=${sub}" class="tkt-btn ask">Inquire</a>`;
     }
@@ -442,26 +544,26 @@
       return `
         <article class="event-card">
           <div class="h-[3px]" style="background:${ev.image_color}"></div>
-          <div class="p-4 flex flex-col flex-1">
-            <p class="text-[11px] text-white/30 font-medium mb-2.5 flex items-center gap-1.5">
+          <div class="p-3.5 flex flex-col flex-1">
+            <p class="text-[10px] font-medium mb-2 flex items-center gap-1.5" style="color:var(--text-dim)">
               <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
               </svg>
               ${ev.date_label} · ${ev.time}
             </p>
-            <h3 class="text-[15px] font-bold text-white leading-snug mb-1">${ev.title}</h3>
-            <p class="text-[11px] text-white/35 flex items-center gap-1.5 mb-3">
+            <h3 class="text-[14px] font-bold leading-snug mb-1" style="color:var(--text-heading)">${ev.title}</h3>
+            <p class="text-[10px] flex items-center gap-1.5 mb-2.5" style="color:var(--text-dim)">
               <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                 <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
               ${ev.venue}
             </p>
-            <p class="text-[13px] text-white/50 leading-relaxed mb-4 flex-1">${ev.hook}</p>
-            <div class="pt-3 border-t border-white/[.06] flex items-center justify-between gap-2">
-              <div class="flex flex-wrap gap-1.5 items-center">
+            <p class="text-[12px] leading-relaxed mb-3 flex-1" style="color:var(--text-body)">${ev.hook}</p>
+            <div class="pt-2.5 flex items-center justify-between gap-2" style="border-top:1px solid var(--border)">
+              <div class="flex flex-wrap gap-1 items-center">
                 ${badges}
-                <span class="text-[11px] font-semibold ${ev.is_free ? 'text-emerald-400' : 'text-white/40'} ml-1">
+                <span class="text-[10px] font-semibold ml-1" style="color:${ev.is_free ? 'var(--badge-free-fg)' : 'var(--text-muted)'}">
                   ${ev.price}
                 </span>
               </div>
@@ -497,49 +599,37 @@
       wrap.innerHTML = chips.join('');
     }
 
-    /* ── Get end of current week (Sunday) ── */
     function getEndOfWeek(isoDate) {
       const d = new Date(isoDate + 'T12:00:00');
-      const dayOfWeek = d.getDay(); // 0=Sun
+      const dayOfWeek = d.getDay();
       const daysToSun = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
       d.setDate(d.getDate() + daysToSun);
       return d.toISOString().slice(0,10);
     }
-
-    /* ── Get end of current month ── */
     function getEndOfMonth(isoDate) {
       const d = new Date(isoDate + 'T12:00:00');
       d.setMonth(d.getMonth() + 1, 0);
       return d.toISOString().slice(0,10);
     }
-
-    /* ── Month name from ISO ── */
     function monthOf(iso) {
       const m = ['January','February','March','April','May','June','July','August','September','October','November','December'];
       return m[parseInt(iso.slice(5,7)) - 1] + ' ' + iso.slice(0,4);
     }
 
-    /* ── Render grid with month dividers ── */
+    /* ── Render grid ── */
     function renderGrid() {
       let list = ALL_EVENTS;
-
-      // Category / quick filter
       if (activeFilter === 'today')          list = list.filter(e => e.date === TODAY);
       else if (activeFilter === 'this-week') list = list.filter(e => e.date >= TODAY && e.date <= getEndOfWeek(TODAY));
       else if (activeFilter === 'free')      list = list.filter(e => e.is_free);
       else if (activeFilter !== 'all')       list = list.filter(e => e.categories.includes(activeFilter));
-
-      // Price bucket
       if (activeBucket) list = list.filter(e => matchBucket(e, activeBucket));
-
-      // Date range
       if (calStart && calEnd)  list = list.filter(e => e.date >= calStart && e.date <= calEnd);
       else if (calStart)       list = list.filter(e => e.date >= calStart);
 
       const grid  = document.getElementById('event-grid');
       const empty = document.getElementById('empty-state');
       grid.classList.add('fading');
-
       setTimeout(() => {
         document.getElementById('result-count').textContent = list.length;
         if (list.length === 0) {
@@ -547,7 +637,6 @@
           empty.classList.remove('hidden');
         } else {
           empty.classList.add('hidden');
-          // Group by month and inject dividers
           let html = '';
           let lastMonth = '';
           list.forEach(ev => {
@@ -562,7 +651,6 @@
         }
         grid.classList.remove('fading');
       }, 180);
-
       refreshChips();
       updateCalRangeDisplay();
     }
@@ -583,13 +671,9 @@
       document.querySelectorAll('.price-seg').forEach(s => s.classList.remove('active'));
       renderGrid();
     }
-    function resetAll() {
-      clearBucket();
-      clearDateRange();
-      setFilter('all');
-    }
+    function resetAll() { clearBucket(); clearDateRange(); setFilter('all'); }
 
-    /* ── Calendar date inputs ── */
+    /* ── Calendar ── */
     const dateFrom  = document.getElementById('date-from');
     const dateTo    = document.getElementById('date-to');
     const dateClear = document.getElementById('date-clear-btn');
@@ -598,19 +682,14 @@
     dateTo.addEventListener('change', handleDateChange);
 
     function handleDateChange() {
-      const from = dateFrom.value;
-      const to   = dateTo.value;
-      if (from && to && to < from) dateTo.value = from;
-
+      if (dateFrom.value && dateTo.value && dateTo.value < dateFrom.value) dateTo.value = dateFrom.value;
       calStart = dateFrom.value || null;
       calEnd   = dateTo.value || null;
       if (calStart && !calEnd) calEnd = calStart;
       if (!calStart && calEnd) calStart = calEnd;
-
       dateClear.classList.toggle('hidden', !calStart && !calEnd);
       renderGrid();
     }
-
     function clearDateRange() {
       calStart = calEnd = null;
       dateFrom.value = '';
@@ -618,12 +697,8 @@
       dateClear.classList.add('hidden');
       renderGrid();
     }
-
     function setPreset(p) {
-      if (p === 'all') {
-        clearDateRange();
-        return;
-      }
+      if (p === 'all') { clearDateRange(); return; }
       const start = TODAY;
       let end;
       if (p === 'this-week')  end = getEndOfWeek(TODAY);
@@ -640,18 +715,14 @@
       dateClear.classList.remove('hidden');
       renderGrid();
     }
-
     function updateCalRangeDisplay() {
       const disp = document.getElementById('cal-range-display');
       const txt  = document.getElementById('cal-range-text');
       if (calStart && calEnd) {
         disp.classList.remove('hidden');
-        txt.textContent = `${fmtDateShort(calStart)} - ${fmtDateShort(calEnd)}`;
-      } else {
-        disp.classList.add('hidden');
-      }
+        txt.textContent = fmtDateShort(calStart) + ' - ' + fmtDateShort(calEnd);
+      } else { disp.classList.add('hidden'); }
     }
-
     function fmtDateShort(iso) {
       const d = new Date(iso+'T12:00:00');
       const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -663,18 +734,18 @@
       if (!f) return;
       document.getElementById('hero-title').textContent = f.title;
       document.getElementById('hero-date').innerHTML = `
-        <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
         </svg>${f.date_label} · ${f.time}`;
       document.getElementById('hero-venue').innerHTML = `
-        <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
           <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
         </svg>${f.venue}`;
       document.getElementById('hero-price').textContent = f.price;
       document.getElementById('hero-hook').textContent = f.hook;
       const tagsHtml = (f.tags || []).map(t =>
-        `<span class="text-[10px] font-semibold uppercase tracking-widest text-white/30 bg-white/[.06] px-2.5 py-1 rounded">${t}</span>`
+        `<span class="text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded" style="background:var(--tag-bg);color:var(--tag-text)">${t}</span>`
       ).join('');
       const url = (f.source_url && f.source_url !== '#') ? f.source_url : '#';
       document.getElementById('hero-tags').innerHTML = tagsHtml + `
@@ -698,15 +769,11 @@
       .then(data => {
         ALL_EVENTS = data.events;
         META = data;
-
-        // Set date input ranges and pre-populate with full range
         if (data.date_min && data.date_max) {
           dateFrom.min = data.date_min;
           dateFrom.max = data.date_max;
           dateTo.min   = data.date_min;
           dateTo.max   = data.date_max;
-
-          // Pre-fill: from today (or first event) to last event
           const startDate = TODAY >= data.date_min ? TODAY : data.date_min;
           dateFrom.value = startDate;
           dateTo.value   = data.date_max;
@@ -714,17 +781,14 @@
           calEnd   = data.date_max;
           dateClear.classList.remove('hidden');
         }
-
         renderGrid();
-
-        // Find nearest upcoming featured event
         const featured = ALL_EVENTS.find(e => e.is_featured && e.date >= TODAY)
                       || ALL_EVENTS.find(e => e.is_featured);
         populateHero(featured);
       })
       .catch(() => {
         document.getElementById('event-grid').innerHTML =
-          `<p class="col-span-3 text-center text-white/20 py-20">Could not load events.json</p>`;
+          `<p class="col-span-5 text-center py-20" style="color:var(--text-dim)">Could not load events.json</p>`;
       });
   </script>
 </body>
