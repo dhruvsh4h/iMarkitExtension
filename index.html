@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -778,12 +778,9 @@
           dateFrom.max = data.date_max;
           dateTo.min   = data.date_min;
           dateTo.max   = data.date_max;
-          const startDate = TODAY >= data.date_min ? TODAY : data.date_min;
-          dateFrom.value = startDate;
-          dateTo.value   = data.date_max;
-          calStart = startDate;
-          calEnd   = data.date_max;
-          dateClear.classList.remove('hidden');
+          /* No default date filter — show all events */
+          calStart = null;
+          calEnd   = null;
         }
         renderGrid();
         const featured = ALL_EVENTS.find(e => e.is_featured && e.date >= TODAY)

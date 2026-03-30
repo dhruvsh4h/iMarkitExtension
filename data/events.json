@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-29T18:50:59",
+  "generated_at": "2026-03-29T23:08:31",
   "region": "Kelowna, BC -- Okanagan",
   "date_range": "Thu, Mar 26 - Tue, Jun 30",
   "date_min": "2026-03-26",
@@ -58,7 +58,6 @@
         "Family",
         "Business"
       ],
-      "is_featured": true,
       "is_free": false,
       "price": "$15 / Kids Free",
       "hook": "The region's premier outdoor expo -- hunting, fishing, camping gear, and guided trip bookings all under one massive roof at MNP Place.",
@@ -70,7 +69,8 @@
       ],
       "source_url": "https://www.bcsportandwilderness.com/",
       "id": 3,
-      "date_label": "Fri, Mar 27"
+      "date_label": "Fri, Mar 27",
+      "is_featured": false
     },
     {
       "title": "Comedy for a Cause",
@@ -402,7 +402,6 @@
         "Family",
         "Free"
       ],
-      "is_featured": true,
       "is_free": true,
       "price": "Free",
       "hook": "Kelowna's vibrant Sikh community celebrates Vaisakhi with a colourful procession, live kirtan, langar, and open-air festivities along Highway 33.",
@@ -415,7 +414,8 @@
       ],
       "source_url": "https://www.tourismkelowna.com/events/",
       "id": 18,
-      "date_label": "Mon, Apr 13"
+      "date_label": "Mon, Apr 13",
+      "is_featured": false
     },
     {
       "title": "Kelowna Earth Day Clean-Up",
@@ -587,7 +587,6 @@
         "Family",
         "Business"
       ],
-      "is_featured": true,
       "is_free": true,
       "price": "Free Entry (food for purchase)",
       "hook": "Taste the world without leaving Kelowna -- 40+ food vendors from Indian to Ethiopian to Filipino line the waterfront for a two-day culinary tour.",
@@ -600,7 +599,8 @@
       ],
       "source_url": "https://www.tourismkelowna.com/events/",
       "id": 26,
-      "date_label": "Sat, May 16"
+      "date_label": "Sat, May 16",
+      "is_featured": false
     },
     {
       "title": "Glenmore Neighbourhood Night Market",
@@ -671,7 +671,7 @@
       "source_url": "https://www.kelownachamber.org",
       "id": 29,
       "date_label": "Thu, May 21",
-      "is_featured": false
+      "is_featured": true
     },
     {
       "title": "Okanagan Reggae Night",
@@ -939,7 +939,6 @@
         "Family",
         "Free"
       ],
-      "is_featured": true,
       "is_free": true,
       "price": "Free",
       "hook": "The biggest South Asian festival in the Interior -- bhangra competitions, Punjabi food stalls, live dhol, henna, and fun for all ages at City Park.",
@@ -953,7 +952,8 @@
       ],
       "source_url": "https://www.tourismkelowna.com/events/",
       "id": 41,
-      "date_label": "Sat, Jun 20"
+      "date_label": "Sat, Jun 20",
+      "is_featured": false
     },
     {
       "title": "Summer Solstice Yoga at Waterfront",

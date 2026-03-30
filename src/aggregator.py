@@ -38,7 +38,6 @@ SEED_EVENTS = [
         "venue": "MNP Place",
         "date": "2026-03-27", "time": "10:00 AM",
         "categories": ["Family", "Business"],
-        "is_featured": True,
         "is_free": False, "price": "$15 / Kids Free",
         "hook": "The region's premier outdoor expo -- hunting, fishing, camping gear, and guided trip bookings all under one massive roof at MNP Place.",
         "image_color": "#2D5016",
@@ -209,7 +208,6 @@ FUTURE_EVENTS = [
         "venue": "Rutland -- Hwy 33",
         "date": "2026-04-13", "time": "10:00 AM",
         "categories": ["Punjabi-Community", "Family", "Free"],
-        "is_featured": True,
         "is_free": True, "price": "Free",
         "hook": "Kelowna's vibrant Sikh community celebrates Vaisakhi with a colourful procession, live kirtan, langar, and open-air festivities along Highway 33.",
         "image_color": "#F59E0B",
@@ -300,7 +298,6 @@ FUTURE_EVENTS = [
         "venue": "City Park",
         "date": "2026-05-16", "time": "11:00 AM",
         "categories": ["Family", "Business"],
-        "is_featured": True,
         "is_free": True, "price": "Free Entry (food for purchase)",
         "hook": "Taste the world without leaving Kelowna -- 40+ food vendors from Indian to Ethiopian to Filipino line the waterfront for a two-day culinary tour.",
         "image_color": "#C2410C",
@@ -468,7 +465,6 @@ FUTURE_EVENTS = [
         "venue": "City Park",
         "date": "2026-06-20", "time": "11:00 AM",
         "categories": ["Punjabi-Community", "Family", "Free"],
-        "is_featured": True,
         "is_free": True, "price": "Free",
         "hook": "The biggest South Asian festival in the Interior -- bhangra competitions, Punjabi food stalls, live dhol, henna, and fun for all ages at City Park.",
         "image_color": "#EA580C",
@@ -511,6 +507,18 @@ FUTURE_EVENTS = [
 ]
 
 
+import re
+
+
+def parse_price(price_str: str) -> float:
+    """Extract the numeric dollar value from a price string.
+    '$95' -> 95, '$15 / Kids Free' -> 15, 'Free' -> 0, 'No Cover' -> 0,
+    '$45 (pass)' -> 45, 'Free Entry (food for purchase)' -> 0.
+    """
+    match = re.search(r'\$(\d+(?:\.\d+)?)', price_str)
+    return float(match.group(1)) if match else 0.0
+
+
 def format_date_label(iso_date: str) -> str:
     """Convert '2026-04-13' to 'Mon, Apr 13'."""
     dt = datetime.strptime(iso_date, "%Y-%m-%d")
@@ -535,8 +543,12 @@ def main():
     for i, ev in enumerate(valid_events, 1):
         ev["id"] = i
         ev["date_label"] = format_date_label(ev["date"])
-        if "is_featured" not in ev:
-            ev["is_featured"] = False
+        ev["is_featured"] = False
+
+    # Auto-feature: highest ticket price wins the hero slot
+    top_event = max(valid_events, key=lambda e: parse_price(e["price"]))
+    top_event["is_featured"] = True
+    print(f"  [FEATURED] {top_event['title']} ({top_event['price']}) -- highest ticket price")
 
     # Sort by date, then time
     valid_events.sort(key=lambda e: (e["date"], e["time"]))
