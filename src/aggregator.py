@@ -43,7 +43,7 @@ SEED_EVENTS = [
         "hook": "The region's premier outdoor expo -- hunting, fishing, camping gear, and guided trip bookings all under one massive roof at MNP Place.",
         "image_color": "#2D5016",
         "tags": ["Outdoors", "Family", "Expo"],
-        "source_url": "https://bcsportsmanshow.com"
+        "source_url": "https://www.bcsportandwilderness.com/"
     },
     {
         "title": "Comedy for a Cause",
@@ -54,7 +54,7 @@ SEED_EVENTS = [
         "hook": "Laugh the night away for a good reason -- local comedians take the Dakoda's stage to raise funds for a worthy Kelowna cause.",
         "image_color": "#4A1942",
         "tags": ["Comedy", "Charity", "Nightlife"],
-        "source_url": "https://www.dakodasnightclub.com"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Okanagan Screen Awards",
@@ -65,7 +65,7 @@ SEED_EVENTS = [
         "hook": "Celebrate the Okanagan's best in film and media -- an elegant awards gala honouring local storytellers on the big screen.",
         "image_color": "#1A1A2E",
         "tags": ["Film", "Awards", "Arts"],
-        "source_url": "https://www.landmarkcinemas.com/kelowna"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Kelowna Farmers' & Crafters' Market",
@@ -76,7 +76,7 @@ SEED_EVENTS = [
         "hook": "Stock up on fresh local produce, handmade goods, and community warmth at Kelowna's beloved Saturday morning tradition.",
         "image_color": "#B45309",
         "tags": ["Market", "Family", "Free"],
-        "source_url": "https://bcfarmersmarket.org/kelowna-farmers-and-crafters-market/"
+        "source_url": "https://kelownafarmersandcraftersmarket.com"
     },
     {
         "title": "Punjabi Cultural Night",
@@ -87,7 +87,7 @@ SEED_EVENTS = [
         "hook": "A vibrant evening of bhangra, traditional food, and community spirit as Kelowna's Punjabi community gathers to welcome Vaisakhi season.",
         "image_color": "#D97706",
         "tags": ["Punjabi", "Cultural", "Family", "Dance"],
-        "source_url": "https://www.kelownacommunitytheatre.com"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Kelowna Business Networking Mixer",
@@ -109,7 +109,7 @@ SEED_EVENTS = [
         "hook": "Lace up and hit the ice -- free public skating for the whole family at the Rutland Arena, skate rentals available on site.",
         "image_color": "#0E7490",
         "tags": ["Free", "Family", "Sports"],
-        "source_url": "https://www.kelowna.ca/parks-recreation/recreation-facilities/arenas"
+        "source_url": "https://www.kelowna.ca/parks-recreation"
     },
     {
         "title": "Open Mic Tuesday at BNA Brewing",
@@ -136,7 +136,7 @@ FUTURE_EVENTS = [
         "hook": "Sip through 30+ Okanagan wineries paired with gourmet bites from the valley's top chefs -- the ultimate tasting night.",
         "image_color": "#6B1A38",
         "tags": ["Wine", "Food", "Tasting"],
-        "source_url": "https://www.laurelpackinghouse.com"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Kelowna Farmers' Market -- Spring Opening",
@@ -147,7 +147,7 @@ FUTURE_EVENTS = [
         "hook": "The beloved Saturday market returns for the spring season with the first local greens, artisan crafts, and fresh baking.",
         "image_color": "#B45309",
         "tags": ["Market", "Family", "Free"],
-        "source_url": "https://bcfarmersmarket.org/kelowna-farmers-and-crafters-market/"
+        "source_url": "https://kelownafarmersandcraftersmarket.com"
     },
     {
         "title": "Easter Egg Hunt at City Park",
@@ -169,7 +169,7 @@ FUTURE_EVENTS = [
         "hook": "Watch 8 Okanagan startups pitch live to investors and the community -- networking reception with craft beer to follow.",
         "image_color": "#1E40AF",
         "tags": ["Tech", "Startups", "Networking"],
-        "source_url": "https://www.okanagancolab.com"
+        "source_url": "https://www.accelerateokanagan.com"
     },
     {
         "title": "Bhangra Fitness Bootcamp",
@@ -191,7 +191,7 @@ FUTURE_EVENTS = [
         "hook": "Smooth jazz trios take over the Train Station stage -- settle into a booth with a cocktail and let the evening unwind itself.",
         "image_color": "#312E81",
         "tags": ["Jazz", "Live Music", "Nightlife"],
-        "source_url": "https://www.trainstationpub.ca"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Okanagan Spring Craft Fair",
@@ -202,7 +202,7 @@ FUTURE_EVENTS = [
         "hook": "Over 60 local artisans showcase handmade pottery, jewelry, candles, and textiles -- support small and shop local this spring.",
         "image_color": "#92400E",
         "tags": ["Craft Fair", "Artisan", "Shopping"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Vaisakhi Nagar Kirtan Parade",
@@ -214,7 +214,7 @@ FUTURE_EVENTS = [
         "hook": "Kelowna's vibrant Sikh community celebrates Vaisakhi with a colourful procession, live kirtan, langar, and open-air festivities along Highway 33.",
         "image_color": "#F59E0B",
         "tags": ["Vaisakhi", "Punjabi", "Parade", "Cultural"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Kelowna Earth Day Clean-Up",
@@ -225,7 +225,7 @@ FUTURE_EVENTS = [
         "hook": "Join hundreds of volunteers for a trail and shoreline cleanup at Knox Mountain -- gloves, bags, and coffee provided.",
         "image_color": "#15803D",
         "tags": ["Volunteer", "Environment", "Free"],
-        "source_url": "https://www.kelowna.ca/parks-recreation/parks-beaches/knox-mountain-park"
+        "source_url": "https://www.kelowna.ca/parks-recreation"
     },
     {
         "title": "Okanagan Tattoo & Arts Festival",
@@ -236,7 +236,7 @@ FUTURE_EVENTS = [
         "hook": "Ink, art, and live music collide as top tattoo artists from across BC set up shop for a weekend of live tattooing and exhibitions.",
         "image_color": "#1C1917",
         "tags": ["Tattoo", "Art", "Festival"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Saturday Night Comedy at Dakoda's",
@@ -247,7 +247,7 @@ FUTURE_EVENTS = [
         "hook": "Dakoda's monthly stand-up showcase brings touring Canadian comedians to Kelowna -- arrive early for dinner and the best seats.",
         "image_color": "#4A1942",
         "tags": ["Comedy", "Nightlife", "Stand-Up"],
-        "source_url": "https://www.dakodasnightclub.com"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Kelowna Yacht Club Open House",
@@ -271,7 +271,7 @@ FUTURE_EVENTS = [
         "hook": "Celebrate spring with maypole dancing, live folk music, kids' crafts, and a flower crown contest right on the downtown waterfront.",
         "image_color": "#DB2777",
         "tags": ["Festival", "Family", "Free", "Spring"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Okanagan Cinco de Mayo Fiesta",
@@ -282,7 +282,7 @@ FUTURE_EVENTS = [
         "hook": "Tacos, tequila, and a DJ spinning Latin beats -- Dakoda's goes full fiesta mode for Cinco de Mayo with drink specials all night.",
         "image_color": "#B91C1C",
         "tags": ["Nightlife", "Party", "Latin"],
-        "source_url": "https://www.dakodasnightclub.com"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Punjabi Mothers' Day Brunch",
@@ -293,7 +293,7 @@ FUTURE_EVENTS = [
         "hook": "Honour the mothers in your life with a traditional Punjabi brunch -- live tabla music, henna artists, and heartfelt community tributes.",
         "image_color": "#BE185D",
         "tags": ["Punjabi", "Family", "Mother's Day"],
-        "source_url": "https://www.kelownacommunitytheatre.com"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Kelowna International Food Festival",
@@ -305,7 +305,7 @@ FUTURE_EVENTS = [
         "hook": "Taste the world without leaving Kelowna -- 40+ food vendors from Indian to Ethiopian to Filipino line the waterfront for a two-day culinary tour.",
         "image_color": "#C2410C",
         "tags": ["Food", "Cultural", "Festival", "Family"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Glenmore Neighbourhood Night Market",
@@ -316,7 +316,7 @@ FUTURE_EVENTS = [
         "hook": "A walkable evening market with street food trucks, local artisans, face painting, and live acoustic music in the Glenmore neighbourhood.",
         "image_color": "#A16207",
         "tags": ["Night Market", "Family", "Free", "Local"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Victoria Day Long Weekend Beach Bash",
@@ -327,7 +327,7 @@ FUTURE_EVENTS = [
         "hook": "Kick off summer early with volleyball tournaments, a live DJ, BBQ vendors, and the unofficial first swim of the season at Gyro Beach.",
         "image_color": "#0891B2",
         "tags": ["Beach", "Party", "Free", "Summer"],
-        "source_url": "https://www.kelowna.ca/parks-recreation/parks-beaches"
+        "source_url": "https://www.kelowna.ca/parks-recreation"
     },
     {
         "title": "Kelowna Chamber Business Excellence Awards",
@@ -349,7 +349,7 @@ FUTURE_EVENTS = [
         "hook": "Island vibes hit the Okanagan -- live reggae band, tropical cocktails, and a packed dancefloor to carry you into the long weekend.",
         "image_color": "#166534",
         "tags": ["Reggae", "Live Music", "Nightlife"],
-        "source_url": "https://www.fernandospub.ca"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Spring Wine Trail -- Kelowna Wineries",
@@ -360,7 +360,7 @@ FUTURE_EVENTS = [
         "hook": "A self-guided tour of 12 wineries along Kelowna's Lakeshore and Westside wine trails -- your pass includes tastings at each stop.",
         "image_color": "#7C2D12",
         "tags": ["Wine", "Tour", "Okanagan"],
-        "source_url": "https://www.tourismkelowna.com/wine-702/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Kids Free Fishing Day",
@@ -393,7 +393,7 @@ FUTURE_EVENTS = [
         "hook": "Ride 60km of Okanagan back-country gravel through vineyards and forests -- post-ride BBQ and craft beer at the finish line.",
         "image_color": "#78350F",
         "tags": ["Cycling", "Outdoors", "Sports"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
 
     # ─── JUNE 2026 ───
@@ -406,7 +406,7 @@ FUTURE_EVENTS = [
         "hook": "North America's top rib teams battle it out over open flames -- live country music, kids' zone, and all-you-can-eat ribs by the lake.",
         "image_color": "#991B1B",
         "tags": ["Food", "BBQ", "Festival", "Family"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Sikh Heritage Month Gala Dinner",
@@ -417,7 +417,7 @@ FUTURE_EVENTS = [
         "hook": "A formal evening celebrating Sikh contributions to the Okanagan -- keynote speakers, awards, traditional music, and a five-course dinner.",
         "image_color": "#B45309",
         "tags": ["Punjabi", "Gala", "Cultural", "Heritage"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Downtown Kelowna Block Party",
@@ -450,7 +450,7 @@ FUTURE_EVENTS = [
         "hook": "Dozens of teams paddle for glory on Okanagan Lake -- cheer from the shore with food vendors, live music, and kids' activities all day.",
         "image_color": "#0369A1",
         "tags": ["Sports", "Festival", "Free", "Waterfront"],
-        "source_url": "https://www.kelownadragonboatfestival.com"
+        "source_url": "https://www.kelownadragonboatclub.com"
     },
     {
         "title": "Kelowna Craft Beer Week Launch",
@@ -473,7 +473,7 @@ FUTURE_EVENTS = [
         "hook": "The biggest South Asian festival in the Interior -- bhangra competitions, Punjabi food stalls, live dhol, henna, and fun for all ages at City Park.",
         "image_color": "#EA580C",
         "tags": ["Punjabi", "Mela", "Festival", "Cultural", "Free"],
-        "source_url": "https://www.tourismkelowna.com/things-to-do/events/"
+        "source_url": "https://www.tourismkelowna.com/events/"
     },
     {
         "title": "Summer Solstice Yoga at Waterfront",
@@ -495,7 +495,7 @@ FUTURE_EVENTS = [
         "hook": "Five days of panels, workshops, and pitch competitions -- connect with founders, VCs, and the Okanagan tech ecosystem.",
         "image_color": "#1E40AF",
         "tags": ["Tech", "Startups", "Business", "Conference"],
-        "source_url": "https://www.okanagancolab.com"
+        "source_url": "https://www.accelerateokanagan.com"
     },
     {
         "title": "Canada Day Fireworks & Festival",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-29T16:13:50",
+  "generated_at": "2026-03-29T18:50:59",
   "region": "Kelowna, BC -- Okanagan",
   "date_range": "Thu, Mar 26 - Tue, Jun 30",
   "date_min": "2026-03-26",
@@ -68,7 +68,7 @@
         "Family",
         "Expo"
       ],
-      "source_url": "https://bcsportsmanshow.com",
+      "source_url": "https://www.bcsportandwilderness.com/",
       "id": 3,
       "date_label": "Fri, Mar 27"
     },
@@ -89,7 +89,7 @@
         "Charity",
         "Nightlife"
       ],
-      "source_url": "https://www.dakodasnightclub.com",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 4,
       "date_label": "Fri, Mar 27",
       "is_featured": false
@@ -111,7 +111,7 @@
         "Awards",
         "Arts"
       ],
-      "source_url": "https://www.landmarkcinemas.com/kelowna",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 5,
       "date_label": "Sat, Mar 28",
       "is_featured": false
@@ -134,7 +134,7 @@
         "Family",
         "Free"
       ],
-      "source_url": "https://bcfarmersmarket.org/kelowna-farmers-and-crafters-market/",
+      "source_url": "https://kelownafarmersandcraftersmarket.com",
       "id": 6,
       "date_label": "Sat, Mar 28",
       "is_featured": false
@@ -158,7 +158,7 @@
         "Family",
         "Dance"
       ],
-      "source_url": "https://www.kelownacommunitytheatre.com",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 7,
       "date_label": "Sun, Mar 29",
       "is_featured": false
@@ -203,7 +203,7 @@
         "Family",
         "Sports"
       ],
-      "source_url": "https://www.kelowna.ca/parks-recreation/recreation-facilities/arenas",
+      "source_url": "https://www.kelowna.ca/parks-recreation",
       "id": 9,
       "date_label": "Mon, Mar 30",
       "is_featured": false
@@ -249,7 +249,7 @@
         "Food",
         "Tasting"
       ],
-      "source_url": "https://www.laurelpackinghouse.com",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 11,
       "date_label": "Thu, Apr 2",
       "is_featured": false
@@ -272,7 +272,7 @@
         "Family",
         "Free"
       ],
-      "source_url": "https://bcfarmersmarket.org/kelowna-farmers-and-crafters-market/",
+      "source_url": "https://kelownafarmersandcraftersmarket.com",
       "id": 12,
       "date_label": "Sat, Apr 4",
       "is_featured": false
@@ -317,7 +317,7 @@
         "Startups",
         "Networking"
       ],
-      "source_url": "https://www.okanagancolab.com",
+      "source_url": "https://www.accelerateokanagan.com",
       "id": 14,
       "date_label": "Tue, Apr 7",
       "is_featured": false
@@ -364,7 +364,7 @@
         "Live Music",
         "Nightlife"
       ],
-      "source_url": "https://www.trainstationpub.ca",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 16,
       "date_label": "Fri, Apr 10",
       "is_featured": false
@@ -387,7 +387,7 @@
         "Artisan",
         "Shopping"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 17,
       "date_label": "Sat, Apr 11",
       "is_featured": false
@@ -413,7 +413,7 @@
         "Parade",
         "Cultural"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 18,
       "date_label": "Mon, Apr 13"
     },
@@ -435,7 +435,7 @@
         "Environment",
         "Free"
       ],
-      "source_url": "https://www.kelowna.ca/parks-recreation/parks-beaches/knox-mountain-park",
+      "source_url": "https://www.kelowna.ca/parks-recreation",
       "id": 19,
       "date_label": "Wed, Apr 22",
       "is_featured": false
@@ -458,7 +458,7 @@
         "Art",
         "Festival"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 20,
       "date_label": "Fri, Apr 24",
       "is_featured": false
@@ -480,7 +480,7 @@
         "Nightlife",
         "Stand-Up"
       ],
-      "source_url": "https://www.dakodasnightclub.com",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 21,
       "date_label": "Sat, Apr 25",
       "is_featured": false
@@ -528,7 +528,7 @@
         "Free",
         "Spring"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 23,
       "date_label": "Fri, May 1",
       "is_featured": false
@@ -550,7 +550,7 @@
         "Party",
         "Latin"
       ],
-      "source_url": "https://www.dakodasnightclub.com",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 24,
       "date_label": "Tue, May 5",
       "is_featured": false
@@ -573,7 +573,7 @@
         "Family",
         "Mother's Day"
       ],
-      "source_url": "https://www.kelownacommunitytheatre.com",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 25,
       "date_label": "Sun, May 10",
       "is_featured": false
@@ -598,7 +598,7 @@
         "Festival",
         "Family"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 26,
       "date_label": "Sat, May 16"
     },
@@ -621,7 +621,7 @@
         "Free",
         "Local"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 27,
       "date_label": "Sun, May 17",
       "is_featured": false
@@ -645,7 +645,7 @@
         "Free",
         "Summer"
       ],
-      "source_url": "https://www.kelowna.ca/parks-recreation/parks-beaches",
+      "source_url": "https://www.kelowna.ca/parks-recreation",
       "id": 28,
       "date_label": "Mon, May 18",
       "is_featured": false
@@ -690,7 +690,7 @@
         "Live Music",
         "Nightlife"
       ],
-      "source_url": "https://www.fernandospub.ca",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 30,
       "date_label": "Fri, May 22",
       "is_featured": false
@@ -712,7 +712,7 @@
         "Tour",
         "Okanagan"
       ],
-      "source_url": "https://www.tourismkelowna.com/wine-702/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 31,
       "date_label": "Sat, May 23",
       "is_featured": false
@@ -782,7 +782,7 @@
         "Outdoors",
         "Sports"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 34,
       "date_label": "Sat, May 30",
       "is_featured": false
@@ -805,7 +805,7 @@
         "Festival",
         "Family"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 35,
       "date_label": "Fri, Jun 5",
       "is_featured": false
@@ -829,7 +829,7 @@
         "Cultural",
         "Heritage"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 36,
       "date_label": "Sat, Jun 6",
       "is_featured": false
@@ -901,7 +901,7 @@
         "Free",
         "Waterfront"
       ],
-      "source_url": "https://www.kelownadragonboatfestival.com",
+      "source_url": "https://www.kelownadragonboatclub.com",
       "id": 39,
       "date_label": "Sat, Jun 13",
       "is_featured": false
@@ -951,7 +951,7 @@
         "Cultural",
         "Free"
       ],
-      "source_url": "https://www.tourismkelowna.com/things-to-do/events/",
+      "source_url": "https://www.tourismkelowna.com/events/",
       "id": 41,
       "date_label": "Sat, Jun 20"
     },
@@ -997,7 +997,7 @@
         "Business",
         "Conference"
       ],
-      "source_url": "https://www.okanagancolab.com",
+      "source_url": "https://www.accelerateokanagan.com",
       "id": 43,
       "date_label": "Mon, Jun 22",
       "is_featured": false
